@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <link rel="stylesheet" type="text/css" href="icon-fonts/font-awesome-4.3.0/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/af.ui.min.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/icons.min.css">
+        <meta charset="UTF-8">
+        <title>Blank App Designer Cordova Web App Project Template</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <!--            
+            You may substitute jQuery for the App Framework selector library.
+            See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+        -->
+        <script type="application/javascript" src="app_framework/2.1/appframework.js"></script>
+        <script type="application/javascript" src="app_framework/2.1/appframework.ui.js" data-ver="1"></script>
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="lib/underscore.min.js"></script>
+        <script type="application/javascript" src="lib/backbone.js"></script>
+        <script type="application/javascript" src="lib/Backbone.ModelBinder.min.js"></script>
+        <script type="application/javascript" src="xdk/ad/backbone_support.js"></script>
+        <script type="application/javascript" src="xdk/ad/jquery.ba-throttle-debounce.min.js"></script>
+        <script type="application/javascript" src="xhr.js"></script>
+        <script type="application/javascript" src="xdk/services/service-credentials.js"></script>
+        <script type="application/javascript" src="xdk/services/service-methods.js"></script>
+        <script type="application/javascript" src="xdk/ad/ad_events_data.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="xdk/ad/index_setup_services.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/af_subpage.js"></script>
+        <script type="application/javascript" src="app_framework/themeRelease.js"></script>
+        <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script type="application/javascript" src="google_maps/google_maps.js"></script>
+
+        <script type="application/javascript" src="app_framework/pageChangeRepeater.js"></script>
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <header class="wrapping-col wrap-element uib_w_15" data-uib="app_framework/header" data-ver="2" id="af-header-0">
+            <h1></h1>
+            <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_59 header-right d-margins media-button-text-bottom" data-uib="media/graphic_button"
+            data-ver="0" href="http://www.lnl.com.tr/">
+                <img src="http://www.lnl.com.tr/wp-content/uploads/2014/12/LogoMR_trans.png">
+
+                <span class="uib-caption">LNL</span>
+            </a>
+
+        </header>
+        <header class="wrapping-col wrap-element uib_w_22" data-uib="app_framework/header" data-ver="2" id="af-header-1">
+            <h1></h1>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_33" data-uib="app_framework/header" data-ver="2" id="af-header-2">
+            <a class="button widget uib_w_39 d-margins icon home green" data-uib="app_framework/button" data-ver="1">Anasayfa</a>
+
+            <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_59 header-right d-margins media-button-text-bottom" data-uib="media/graphic_button"
+            data-ver="0" href="http://www.lnl.com.tr/">
+                <img src="http://www.lnl.com.tr/wp-content/uploads/2014/12/LogoMR_trans.png">
+
+                <span class="uib-caption">LNL</span>
+            </a>
+
+        </header>
+        <div class="uwrap" id="content">
+
+            <div class="upage panel" id="mainpage" data-header="af-header-0" data-footer="af-footer-1">
+
+                <div id="uib_page_7" class="upage-content vertical-col left ">
+                    <div class="grid grid-pad urow uib_row_17 row-height-17" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_20 col-0_12-12 Location" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col center">
+
+                                <div class="widget uib_w_61 scale-image d-margins" data-uib="media/img" data-ver="0">
+                                    <figure class="figure-align">
+                                        <img src=" http://www.lnl.com.tr/wp-content/uploads/2014/12/LogoMR_trans.png">
+
+                                        <figcaption data-position="bottom"></figcaption>
+                                    </figure>
+                                </div>
+
+                                <div class="table-thing with-label widget uib_w_66 d-margins" data-uib="app_framework/input" data-ver="1">
+                                    <form action="" method="post" name="login" class="little-chef-form">
+                                        <div class="table-thing with-label widget uib_w_67 d-margins" data-uib="app_framework/input" data-ver="1">
+                                            <label class="narrow-control label-inline" for="e_posta" name="e_posta">E-Posta</label>
+
+                                            <input class="wide-control" type="email" id="e_posta">
+                                        </div>
+                                        <div class="table-thing with-label widget uib_w_68 d-margins" data-uib="app_framework/input" data-ver="1">
+                                            <label class="narrow-control label-inline" for="password" name="password">Şifre</label>
+                                            <input class="wide-control" type="password" id="password">
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="grid grid-pad urow uib_row_24 row-height-24" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_31 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+
+                                            <a class="button widget uib_w_64 d-margins green" data-uib="app_framework/button" data-ver="1" onclick="Control()">Giriş</a><span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="upage vertical-col left panel BackGround2" id="uib_page_6" data-header="af-header-2" data-footer="af-footer-2">
+
+                <div class="upage-outer">
+
+                    <div id="uib_page_3" class="upage-content vertical-col left hidden">
+                        <div class="grid grid-pad urow uib_row_9 row-height-9" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_15 col-0" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_11 row-height-11" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_10 col-0_6-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <ul class="list widget uib_w_53 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_54 default_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLScenes" data-sc="multiple" data-rpath="[]"><a class="fa fa-sitemap">{{_name}}</a>
+                                        </li>
+
+                                    </ul>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+
+                            <div class="col uib_col_29 col-0_6-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <ul class="list widget uib_w_70 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_56 list2_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_54" data-sc="multiple" data-rpath="._childs[]" id="Scene_Name">
+                                            <a class="fa fa-flash">{{_name}}</a>
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_13 row-height-13" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_26 col-0_6-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_14 col-0_6-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <ul class="list widget uib_w_62 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_63 template" data-uib="app_framework/listitem" data-ver="1" data-sc="multiple" data-sm="LNLonscenedevices" data-rpath="[]">
+                                            <a>{{_name}}</a>
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+
+                    <div id="uib_page_4" class="upage-content vertical-col left hidden">
+
+                        <div class="grid grid-pad urow uib_row_20 row-height-20" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_27 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_46 d-margins template" data-uib="media/text" data-ver="0" data-sm="-- .uib_w_56" data-sc="single" data-rpath="(base)">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>{{_path._center_of_latitude}} -</p>
+                                        </div>
+                                    </div><a class="button widget uib_w_48 d-margins icon location" data-uib="app_framework/button" data-ver="1">Location</a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_21 row-height-21" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_28 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="table-thing with-label widget uib_w_47 d-margins template" data-uib="app_framework/flip_switch" data-ver="1" data-sm="-- .uib_w_41" data-sc="single" data-rpath="(base)">
+
+                                        <div class="wide-control">
+                                            <input type="checkbox" class="toggle" id="af-flipswitch-0">
+                                            <label for="af-flipswitch-0" data-on="Açık" data-off="Kapalı">
+
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <div id="uib_page_5" class="upage-content vertical-col left hidden"><a class="button widget uib_w_25 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1">Geri</a>
+                        <div class="grid grid-pad urow uib_row_14 row-height-14" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_16 col-0" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_49 maps-size d-margins" data-uib="media/google_maps" data-ver="0" data-zoom="8" data-sm="LNLScenes" data-sc="multiple" data-rpath="[]" data-array="[]" data-long="{{_path._center_of_longitude}}" data-lat="{{_path._center_of_latitude}}"
+                                    data-center-longitude="{{_path._center_of_longitude}}" data-center-latitude="{{_path._center_of_latitude}}"></div>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+
+                            <span class="uib_shim"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card_col widget uib_w_20 d-margins card-columns-20" data-uib="layout/card_columns" data-ver="0"></div>
+            </div>
+        </div>
+        <script>
+            function Control(){
+                var MINLENGTH = 3;
+                var formUsername = document.forms.login.e_posta.value;
+                var formPassword = document.forms.login.password.value;
+                // Validate username and password
+                
+                
+                
+                if (formUsername === null || formUsername === "") {
+                    alert("Username must be filled out");
+                    alert("Login failed!!!");
+                }
+                else if (formPassword === null || formPassword === "") {
+                    alert("Password must be filled out");
+                    alert("Login failed!!!");
+                }
+                else if (formUsername.length < MINLENGTH || formPassword.length < MINLENGTH) {
+                    alert("The minimum length of username and password at least " + MINLENGTH);
+                    alert("Login failed!!!");
+                }
+                else
+                {
+                    $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=scenes&txtEmail="+ formUsername +"&txtPassword="+ formPassword,function(jsondata){
+                        alert("1");
+                        if(jsondata == null){
+                            alert("2");
+                            alert("Wrong password or user name please try again!");
+                        }else{
+                            activate_subpage("#uib_page_3");
+//                            scenes
+                            intel.xdk.services.LNLScenes({txtEmail:formUsername , txtPassword:formPassword, p1:"4"})
+                            .then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+//                            onsceneDevices
+                            intel.xdk.services.LNLonscenedevices({txtEmail:formUsername , txtPassword:formPassword, p1:"4"})
+                            .then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+                            alert("3");
+                            return;                      
+                        }
+                    });
+                    
+                }        
+            }
+        </script>
+
+        <footer class="wrap-element uib_w_60" data-uib="app_framework/footer" data-ver="1" id="af-footer-1"></footer>
+
+        <footer class="wrap-element uib_w_34" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"><a class="widget uib_w_16 d-margins icon tools orange" data-uib="app_framework/button" data-ver="1">Akıllı Görevler</a><a class="widget uib_w_17 d-margins header-right red" data-uib="app_framework/button" data-ver="1">Güvenli Çıkış</a>
+        </footer>
+
+        <footer class="wrap-element uib_w_23" data-uib="app_framework/footer" data-ver="1" id="af-footer-0"></footer>
+    </body>
+
+</html>

@@ -1,0 +1,391 @@
+{
+  "project": {
+    "projectSettingsVersion": "1.2",
+    "creationData": {
+      "type": "App Designer",
+      "projectTypeName": "com.intel.xdk.projecttype.jsapp",
+      "src": "appDesigner",
+      "projectGuid": "6f83d6cc-61a8-444f-8779-405631fdc413",
+      "lastModifiedDate": 1441205953228,
+      "creationDate": 1438649412082
+    },
+    "XDK-app-designer": "true",
+    "sourceDirectory": "www",
+    "startFile": "index.html",
+    "projectFiles": {},
+    "projectDirectories": {
+      "xdk/services/iodocs": {
+        "settings": {
+          "project": {
+            "XDK-generated": "true"
+          }
+        }
+      },
+      "www/xdk/services": {
+        "settings": {
+          "project": {
+            "XDK-generated": "true"
+          }
+        }
+      }
+    },
+    "libraries": [],
+    "serviceMethods": [
+      {
+        "methodName": "LNLScenes",
+        "serviceName": "LNL",
+        "resultType": "array",
+        "selectedPaths": {
+          "[0]._id": "string",
+          "[0]._name": "string",
+          "[0]._description": "string",
+          "[0]._path._id": "string",
+          "[0]._path._path_string": "string",
+          "[0]._path._center_of_latitude": "string",
+          "[0]._path._center_of_longitude": "string",
+          "[0]._parentSceneId": "string",
+          "[0]._scene_type._name": "string",
+          "[0]._scene_type._id": "string",
+          "[0]._scene_type._description": "string",
+          "[0]._childs[0]._id": "string",
+          "[0]._childs[0]._name": "string",
+          "[0]._childs[0]._description": "string",
+          "[0]._childs[0]._path._id": "string",
+          "[0]._childs[0]._path._path_string": "string",
+          "[0]._childs[0]._path._center_of_latitude": "string",
+          "[0]._childs[0]._path._center_of_longitude": "string",
+          "[0]._childs[0]._scene_type._id": "string",
+          "[0]._childs[0]._scene_type._name": "string",
+          "[0]._childs[0]._scene_type._description": "string",
+          "[0]._childs[0]._map_image": "string",
+          "[0]._childs[1]._id": "string",
+          "[0]._childs[1]._name": "string",
+          "[0]._childs[1]._description": "string",
+          "[0]._childs[1]._path._id": "string",
+          "[0]._childs[1]._path._path_string": "string",
+          "[0]._childs[1]._path._center_of_longitude": "string",
+          "[0]._childs[1]._path._center_of_latitude": "string",
+          "[0]._childs[1]._parentSceneId": "string",
+          "[0]._childs[1]._scene_type._id": "string",
+          "[0]._childs[1]._scene_type._name": "string",
+          "[0]._childs[1]._scene_type._description": "string",
+          "[0]._childs[1]._map_image": "string",
+          "[0]._map_image": "string"
+        },
+        "cachedResult": [
+          {
+            "_id": "1",
+            "_name": "ayatar sistem demosu",
+            "_description": "DEMO için özel oluşturulmuş senaryo",
+            "_path": {
+              "_id": "1",
+              "_path_string": "((11.293323, 20.482033), (21.293323, 30.482033))",
+              "_center_of_latitude": "16.2933",
+              "_center_of_longitude": "25.482"
+            },
+            "_parentSceneId": "0",
+            "_scene_type": {
+              "_id": "1",
+              "_name": "ARAZİ",
+              "_description": "Varsayılan tarım arazisi"
+            },
+            "_childs": [
+              {
+                "_id": "4",
+                "_name": "Kuzey Bölgesi - Bölge 1",
+                "_description": "Demo Bölge 1",
+                "_path": {
+                  "_id": "1",
+                  "_path_string": "((11.293323, 20.482033), (21.293323, 30.482033))",
+                  "_center_of_latitude": "16.2933",
+                  "_center_of_longitude": "25.482"
+                },
+                "_parentSceneId": "1",
+                "_scene_type": {
+                  "_id": "1",
+                  "_name": "ARAZİ",
+                  "_description": "Varsayılan tarım arazisi"
+                },
+                "_childs": [],
+                "_map_image": "tempr.PNG"
+              },
+              {
+                "_id": "6",
+                "_name": "Güney Bölgesi - Bölge 2",
+                "_description": "Demo Bölge 2",
+                "_path": {
+                  "_id": "1",
+                  "_path_string": "((11.293323, 20.482033), (21.293323, 30.482033))",
+                  "_center_of_latitude": "16.2933",
+                  "_center_of_longitude": "25.482"
+                },
+                "_parentSceneId": "1",
+                "_scene_type": {
+                  "_id": "1",
+                  "_name": "ARAZİ",
+                  "_description": "Varsayılan tarım arazisi"
+                },
+                "_childs": [],
+                "_map_image": "tempr.PNG"
+              }
+            ],
+            "_map_image": "tempr.PNG"
+          },
+          {
+            "_id": "9",
+            "_name": "ayatar sistem demosu",
+            "_description": "Ofis için kullanılacak demo senaryo",
+            "_path": {
+              "_id": "1",
+              "_path_string": "((11.293323, 20.482033), (21.293323, 30.482033))",
+              "_center_of_latitude": "16.2933",
+              "_center_of_longitude": "25.482"
+            },
+            "_parentSceneId": "0",
+            "_scene_type": {
+              "_id": "1",
+              "_name": "ARAZİ",
+              "_description": "Varsayılan tarım arazisi"
+            },
+            "_childs": [],
+            "_map_image": "tempr.PNG"
+          }
+        ],
+        "codeGenerationParams": {
+          "apiName": "LNL",
+          "endpointName": "LNL Web Services",
+          "methodName": "Scenes",
+          "namespace": "intel.xdk.services."
+        },
+        "parameters": {
+          "txtEmail": "info@lnl.com.tr",
+          "txtPassword": "1234",
+          "p1": "4"
+        },
+        "requiredLibraries": [
+          "xhr.js",
+          "xdk/services/service-credentials.js",
+          "xdk/services/service-methods.js"
+        ]
+      }
+    ],
+    "cordovaPluginsDirectory": "plugins",
+    "cordovaPlugins": [
+      {
+        "id": "org.apache.cordova.device",
+        "version": "0.2.13",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.splashscreen",
+        "version": "0.3.5",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      }
+    ],
+    "buildConfigurations": {
+      "Android-Crosswalk": {
+        "platform_": "android",
+        "runtime_": "Crosswalk with Cordova 3.x",
+        "name_": "Android-Crosswalk",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "19",
+          "android-installLocation": "auto"
+        },
+        "isActive_": true,
+        "appName_": "PROJE",
+        "appID_": "xdk.intel.blank.ad.template.crosswalk",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
+        "appVersionCode_": "1"
+      },
+      "Android": {
+        "platform_": "android",
+        "runtime_": "Cordova 3.x",
+        "name_": "Android",
+        "preferences_": {
+          "android-minSdkVersion": "10",
+          "android-targetSdkVersion": "19",
+          "android-installLocation": "auto"
+        },
+        "isActive_": true,
+        "appName_": "PROJE",
+        "appID_": "xdk.intel.blank.ad.template",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
+        "appVersionCode_": "1"
+      },
+      "iOS": {
+        "platform_": "ios",
+        "runtime_": "Cordova 3.x",
+        "name_": "iOS",
+        "preferences_": {
+          "ios-target": "6",
+          "ios-configuration": "adhoc"
+        },
+        "isActive_": true,
+        "appName_": "PROJE",
+        "appID_": "xdk.intel.blank.ad.template",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor."
+      },
+      "Windows8": {
+        "platform_": "windows8",
+        "runtime_": "Cordova 3.x",
+        "name_": "Windows8",
+        "preferences_": {
+          "windows-publisher-display-name": "",
+          "windows-publisher-id": ""
+        },
+        "isActive_": true,
+        "appName_": "PROJE",
+        "appID_": "xdk.intel.blank.ad.template",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.0.1",
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor."
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "PROJE",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "PROJE",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "PROJE",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "PROJE",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      }
+    },
+    "gameAssetDirectory": "asset",
+    "gameMetadata": {},
+    "projectTags": []
+  }
+}
