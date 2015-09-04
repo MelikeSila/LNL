@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "appDesigner",
       "projectGuid": "6f83d6cc-61a8-444f-8779-405631fdc413",
-      "lastModifiedDate": 1441205953228,
+      "lastModifiedDate": 1441370107640,
       "creationDate": 1438649412082
     },
     "XDK-app-designer": "true",
@@ -160,6 +160,143 @@
         "parameters": {
           "txtEmail": "info@lnl.com.tr",
           "txtPassword": "1234",
+          "p1": "4"
+        },
+        "requiredLibraries": [
+          "xhr.js",
+          "xdk/services/service-credentials.js",
+          "xdk/services/service-methods.js"
+        ]
+      },
+      {
+        "methodName": "LNLonscenedevices",
+        "serviceName": "LNL",
+        "resultType": "array",
+        "selectedPaths": {
+          "[2]._id": "string",
+          "[2]._name": "string",
+          "[2]._description": "string",
+          "[2]._map_item._id": "string",
+          "[2]._map_item._x": "string",
+          "[2]._map_item._y": "string",
+          "[2]._map_item._data": "string",
+          "[2]._device._id": "string",
+          "[2]._device._default_name": "string",
+          "[2]._device._default_description": "string",
+          "[2]._device._serial_no": "string",
+          "[2]._device._is_virtual": "string",
+          "[2]._device._device_model._id": "string",
+          "[2]._device._device_model._model_number": "string",
+          "[2]._device._device_model._description": "string",
+          "[2]._device._device_model._name": "string",
+          "[2]._device._latitude": "string",
+          "[2]._device._longitude": "string",
+          "[2]._device._isParentDevice": "boolean",
+          "[2]._is_virtual": "number",
+          "[2]._sms_feedback": "string",
+          "[2]._email_feedback": "string"
+        },
+        "cachedResult": [
+          {
+            "_id": "1",
+            "_name": "Ana kontrolcü",
+            "_description": "Ana kontrolcü",
+            "_map_item": {
+              "_id": "4",
+              "_x": "414",
+              "_y": "222",
+              "_data": "IMG=img/icons/outdoor.png"
+            },
+            "_device": {
+              "_id": "22",
+              "_default_name": "Ana Kontrolcü",
+              "_default_description": "Ana Kontrolcü",
+              "_serial_no": "359551036962768",
+              "_is_virtual": "0",
+              "_device_model": {
+                "_id": "2",
+                "_model_number": "9002",
+                "_name": "KOORDINATOR",
+                "_description": "KOORDINATOR CİHAZI"
+              },
+              "_latitude": "0",
+              "_longitude": "0",
+              "_isParentDevice": true
+            },
+            "_is_virtual": 0,
+            "_sms_feedback": "1",
+            "_email_feedback": "1"
+          },
+          {
+            "_id": "2",
+            "_name": "Vana 1",
+            "_description": "Ana Vana 1",
+            "_map_item": {
+              "_id": "1",
+              "_x": "643",
+              "_y": "327",
+              "_data": "IMG=img/icons/valve.png"
+            },
+            "_device": {
+              "_id": "1",
+              "_default_name": "VALF 1",
+              "_default_description": "Aç Kapa valf",
+              "_serial_no": "97q2348u843u",
+              "_is_virtual": "1",
+              "_device_model": {
+                "_id": "1",
+                "_model_number": "6000",
+                "_name": "DC_WON",
+                "_description": "AÇMA KAPAMA CİHAZI"
+              },
+              "_latitude": "12.2451",
+              "_longitude": "12.2451",
+              "_isParentDevice": false
+            },
+            "_is_virtual": 0,
+            "_sms_feedback": "0",
+            "_email_feedback": "1"
+          },
+          {
+            "_id": "5",
+            "_name": "Sensör 2",
+            "_description": "Sensör 2",
+            "_map_item": {
+              "_id": "3",
+              "_x": "477",
+              "_y": "426",
+              "_data": "IMG=img/icons/temphumipres.png"
+            },
+            "_device": {
+              "_id": "17",
+              "_default_name": "SENSOR_THP",
+              "_default_description": "Sıcaklık, Nem, Basınç Sensörü",
+              "_serial_no": "0013a20040696d54",
+              "_is_virtual": "0",
+              "_device_model": {
+                "_id": "3",
+                "_model_number": "1005",
+                "_name": "SENSOR_THP",
+                "_description": "Sıcaklık, Nem, Basınç Sensörü"
+              },
+              "_latitude": "0",
+              "_longitude": "0",
+              "_isParentDevice": false
+            },
+            "_is_virtual": 0,
+            "_sms_feedback": "1",
+            "_email_feedback": "1"
+          }
+        ],
+        "codeGenerationParams": {
+          "apiName": "LNL",
+          "endpointName": "LNL Web Services",
+          "methodName": "onscenedevices",
+          "namespace": "intel.xdk.services."
+        },
+        "parameters": {
+          "txtEmail": "faysalbasci@yahoo.com",
+          "txtPassword": "123456",
           "p1": "4"
         },
         "requiredLibraries": [

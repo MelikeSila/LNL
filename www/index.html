@@ -155,7 +155,7 @@
                                     <div class="col uib_col_31 col-1_12-12" data-uib="layout/col" data-ver="0">
                                         <div class="widget-container content-area vertical-col">
 
-                                            <a class="button widget uib_w_64 d-margins green" data-uib="app_framework/button" data-ver="1" onclick="Control()">Giriş</a><span class="uib_shim"></span>
+                                            <a class="button widget uib_w_64 d-margins green" data-uib="app_framework/button" data-ver="1" onclick="LogIn()">Giriş</a><span class="uib_shim"></span>
                                         </div>
                                     </div>
                                     <span class="uib_shim"></span>
@@ -288,7 +288,7 @@
             </div>
         </div>
         <script>
-            function Control(){
+            function LogIn(){
                 var MINLENGTH = 3;
                 var formUsername = document.forms.login.e_posta.value;
                 var formPassword = document.forms.login.password.value;
@@ -335,10 +335,15 @@
                 }        
             }
         </script>
+        <script>
+            function LogOut(){
+                alert("Çıkış Yaptınız!");
+            }
+        </script>
 
         <footer class="wrap-element uib_w_60" data-uib="app_framework/footer" data-ver="1" id="af-footer-1"></footer>
 
-        <footer class="wrap-element uib_w_34" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"><a class="widget uib_w_16 d-margins icon tools orange" data-uib="app_framework/button" data-ver="1">Akıllı Görevler</a><a class="widget uib_w_17 d-margins header-right red" data-uib="app_framework/button" data-ver="1">Güvenli Çıkış</a>
+        <footer class="wrap-element uib_w_34" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"><a class="widget uib_w_16 d-margins icon tools orange" data-uib="app_framework/button" data-ver="1">Akıllı Görevler</a><a class="widget uib_w_17 d-margins header-right red" data-uib="app_framework/button" data-ver="1" onclick="LogOut()">Güvenli Çıkış</a>
         </footer>
 
         <footer class="wrap-element uib_w_23" data-uib="app_framework/footer" data-ver="1" id="af-footer-0"></footer>

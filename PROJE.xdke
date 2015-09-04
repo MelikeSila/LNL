@@ -1,0 +1,13 @@
+{
+  "project": {
+    "projectSettingsVersion": "1.2",
+    "currentService": {
+      "methodapi": "onscenedevices",
+      "endPoint": "LNL-Web-Services",
+      "service": "LNL"
+    },
+    "currentBuildConfiguration": "Android-Crosswalk",
+    "projectFiles": {},
+    "projectDirectories": {}
+  }
+}
