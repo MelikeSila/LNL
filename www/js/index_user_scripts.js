@@ -36,15 +36,6 @@
     {
          activate_subpage("#uib_page_3"); 
     });
-    
-        /* button  Güvenli Çıkış */
-    
-        
-        /* button  {{_name}} */
-    $(document).on("click", ".uib_w_8", function(evt)
-    {
-         activate_subpage("#uib_page_4"); 
-    });
      
         /* listitem  .uib_w_45 */
     $(document).on("click", ".uib_w_45", function(evt)
@@ -57,13 +48,7 @@
     {
          activate_subpage("#uib_page_5"); 
     });
-    
-        /* listitem  {{_name}} */
-    $(document).on("click", ".uib_w_56", function(evt)
-    {
-         activate_subpage("#uib_page_4"); 
-    });
-    
+
         /* button  Güvenli Çıkış */
     $(document).on("click", ".uib_w_17", function(evt)
     {

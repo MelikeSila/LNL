@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "appDesigner",
       "projectGuid": "6f83d6cc-61a8-444f-8779-405631fdc413",
-      "lastModifiedDate": 1441370107640,
+      "lastModifiedDate": 1441713937994,
       "creationDate": 1438649412082
     },
     "XDK-app-designer": "true",
@@ -298,6 +298,81 @@
           "txtEmail": "faysalbasci@yahoo.com",
           "txtPassword": "123456",
           "p1": "4"
+        },
+        "requiredLibraries": [
+          "xhr.js",
+          "xdk/services/service-credentials.js",
+          "xdk/services/service-methods.js"
+        ]
+      },
+      {
+        "methodName": "LNLsceneDevice",
+        "serviceName": "LNL",
+        "resultType": "object",
+        "selectedPaths": {
+          "._id": "string",
+          "._name": "string",
+          "._description": "string",
+          "._map_item._id": "string",
+          "._map_item._x": "string",
+          "._map_item._y": "string",
+          "._map_item._data": "string",
+          "._device._id": "string",
+          "._device._default_name": "string",
+          "._device._default_description": "string",
+          "._device._serial_no": "string",
+          "._device._is_virtual": "string",
+          "._device._device_model._id": "string",
+          "._device._device_model._model_number": "string",
+          "._device._device_model._name": "string",
+          "._device._device_model._description": "string",
+          "._device._longitude": "string",
+          "._device._latitude": "string",
+          "._device._isParentDevice": "boolean",
+          "._is_virtual": "number",
+          "._sms_feedback": "string",
+          "._email_feedback": "string"
+        },
+        "cachedResult": {
+          "_id": "5",
+          "_name": "Sensör 2",
+          "_description": "Sensör 2",
+          "_map_item": {
+            "_id": "3",
+            "_x": "477",
+            "_y": "426",
+            "_data": "IMG=img/icons/temphumipres.png"
+          },
+          "_device": {
+            "_id": "17",
+            "_default_name": "SENSOR_THP",
+            "_default_description": "Sıcaklık, Nem, Basınç Sensörü",
+            "_serial_no": "0013a20040696d54",
+            "_is_virtual": "0",
+            "_device_model": {
+              "_id": "3",
+              "_model_number": "1005",
+              "_name": "SENSOR_THP",
+              "_description": "Sıcaklık, Nem, Basınç Sensörü"
+            },
+            "_latitude": "0",
+            "_longitude": "0",
+            "_isParentDevice": false
+          },
+          "_is_virtual": 0,
+          "_sms_feedback": "1",
+          "_email_feedback": "1"
+        },
+        "codeGenerationParams": {
+          "apiName": "LNL",
+          "endpointName": "LNL Web Services",
+          "methodName": "sceneDevice",
+          "namespace": "intel.xdk.services."
+        },
+        "parameters": {
+          "txtEmail": "info@lnl.com.tr",
+          "txtPassword": "1234",
+          "p1": "17"
         },
         "requiredLibraries": [
           "xhr.js",

@@ -2,7 +2,6 @@
   "LNL": {
     "name": "LNL",
     "description": "A sports API",
-    "dashboardUrl": "http://lnl.com.tr",
-    "keyParam": "NameParam"
+    "dashboardUrl": "http://lnl.com.tr"
   }
 }

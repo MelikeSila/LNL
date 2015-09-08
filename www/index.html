@@ -200,8 +200,8 @@
                                 <div class="widget-container content-area vertical-col">
 
                                     <ul class="list widget uib_w_70 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_56 list2_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_54" data-sc="multiple" data-rpath="._childs[]" id="Scene_Name">
-                                            <a class="fa fa-flash">{{_name}}</a>
+                                        <li class="widget uib_w_56 list2_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_54" data-sc="multiple" data-rpath="._childs[]" id="Scene_Name" onclick="call_LNLonscenedevices({{_id}})">
+                                            <a class="fa fa-flash" value="5" id="{{_id}}">{{_name}}</a>
                                         </li>
                                     </ul><span class="uib_shim"></span>
                                 </div>
@@ -213,15 +213,18 @@
                             <div class="col uib_col_26 col-0_6-12" data-uib="layout/col" data-ver="0">
                                 <div class="widget-container content-area vertical-col">
 
-                                    <span class="uib_shim"></span>
+                                    <ul class="list widget uib_w_71 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_63 template" data-uib="app_framework/listitem" data-ver="1" data-sc="multiple" data-sm="LNLonscenedevices" data-rpath="(base)" onclick="call_sceneDevice({{_id}})">
+                                            <a>{{_name}}</a>
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
                                 </div>
                             </div>
                             <div class="col uib_col_14 col-0_6-12" data-uib="layout/col" data-ver="0">
                                 <div class="widget-container content-area vertical-col">
 
-                                    <ul class="list widget uib_w_62 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_63 template" data-uib="app_framework/listitem" data-ver="1" data-sc="multiple" data-sm="LNLonscenedevices" data-rpath="[]">
-                                            <a>{{_name}}</a>
+                                    <ul class="list widget uib_w_72 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_74 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="(base)"><a>{{_name}}</a>
                                         </li>
                                     </ul><span class="uib_shim"></span>
                                 </div>
@@ -240,7 +243,7 @@
                                         <div class="widget-container left-receptacle"></div>
                                         <div class="widget-container right-receptacle"></div>
                                         <div>
-                                            <p>{{_path._center_of_latitude}} -</p>
+                                            <p>{{_path._center_of_latitude}} -{{_path._center_of_longitude}}</p>
                                         </div>
                                     </div><a class="button widget uib_w_48 d-margins icon location" data-uib="app_framework/button" data-ver="1">Location</a><span class="uib_shim"></span>
                                 </div>
@@ -309,41 +312,72 @@
                     alert("Login failed!!!");
                 }
                 else
-                {
+                {                
                     $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=scenes&txtEmail="+ formUsername +"&txtPassword="+ formPassword,function(jsondata){
-                        alert("1");
                         if(jsondata == null){
-                            alert("2");
                             alert("Wrong password or user name please try again!");
                         }else{
                             activate_subpage("#uib_page_3");
 //                            scenes
-                            intel.xdk.services.LNLScenes({txtEmail:formUsername , txtPassword:formPassword, p1:"4"})
-                            .then(function(data){
+                            intel.xdk.services.LNLScenes({cache:false, txtEmail:formUsername , txtPassword:formPassword, p1:"4"}).then(function(data){
                                 console.log("here is the data from the service", data);
                             })
-//                            onsceneDevices
-                            intel.xdk.services.LNLonscenedevices({txtEmail:formUsername , txtPassword:formPassword, p1:"4"})
-                            .then(function(data){
-                                console.log("here is the data from the service", data);
-                            })
-                            alert("3");
                             return;                      
                         }
                     });
-                    
                 }        
             }
         </script>
+        <script>
+            //id si alınan bölgenin device'ı var mı diye kontrol ediyor ve device yoksa alert ediyor. device varsa device'ı ekranda seçmesi için gösteriyor.
+            function call_LNLonscenedevices(_id){
+                var MINLENGTH = 3;
+                var formUsername = document.forms.login.e_posta.value;
+                var formPassword = document.forms.login.password.value;
+                        
+                    $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=onscenedevices&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + _id,function(jsondata){
+                        if(jsondata == null){
+                            alert("Bu bölgede herhangi bir cihaz bulunmamaktadır!");
+                        }else{
+//                              onscenedevices
+                            intel.xdk.services.LNLonscenedevices({txtEmail:formUsername , txtPassword:formPassword, p1:_id}).then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+                            return;                      
+                        }
+                    });
+            }
+        </script>
+
+        <script>
+            //id si alınan bölgenin device'ı var mı diye kontrol ediyor ve device yoksa alert ediyor. device varsa device'ı ekranda seçmesi için gösteriyor.
+            function call_sceneDevice(_id){
+                var MINLENGTH = 3;
+                var formUsername = document.forms.login.e_posta.value;
+                var formPassword = document.forms.login.password.value;
+                        
+                    $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=sceneDevice&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + _id,function(jsondata){
+                        if(jsondata == null){
+                            alert("Cihaz hakkında bilgi bulunamadı!");
+                        }else{
+//                              onscenedevices
+                            intel.xdk.services.LNLsceneDevice({txtEmail:formUsername , txtPassword:formPassword, p1:_id}).then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+                            return;                      
+                        }
+                    });
+            }
+        </script>
+
         <script>
             function LogOut(){
                 alert("Çıkış Yaptınız!");
             }
         </script>
-
         <footer class="wrap-element uib_w_60" data-uib="app_framework/footer" data-ver="1" id="af-footer-1"></footer>
 
-        <footer class="wrap-element uib_w_34" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"><a class="widget uib_w_16 d-margins icon tools orange" data-uib="app_framework/button" data-ver="1">Akıllı Görevler</a><a class="widget uib_w_17 d-margins header-right red" data-uib="app_framework/button" data-ver="1" onclick="LogOut()">Güvenli Çıkış</a>
+        <footer class="wrap-element uib_w_34" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"><a class="widget uib_w_16 d-margins icon tools orange" data-uib="app_framework/button" data-ver="1">Akıllı Görevler</a><a class="widget uib_w_17 d-margins header-right fa fa-power-off" data-uib="app_framework/button" data-ver="1" onclick="LogOut()">Güvenli Çıkış</a> 
         </footer>
 
         <footer class="wrap-element uib_w_23" data-uib="app_framework/footer" data-ver="1" id="af-footer-0"></footer>

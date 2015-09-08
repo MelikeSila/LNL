@@ -1,4 +1,4 @@
-/*xdk-auto-gen:service-methods:common:start:95864a7a1ec8e4f316fec7abc9a983ad*/
+/*xdk-auto-gen:service-methods:common:start:6eb47654a98158a66f7bc57cc27d0b0f*/
 
 var intel;
 if (!intel) intel = {};
@@ -259,70 +259,6 @@ intel.xdk.services.iodocs_.LNL = ((function(credentials) {
   return exports;
 })
 )(intel.xdk.services.credentials.LNL,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'http://api.usatoday.com/open/';
-
-  function getCensusData(path, params) {
-    params = params || {};
-    var url = baseUrl + 'census/' + path + '?api_key=' + credentials.apiKey + '&' + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.getLocations = getCensusData.bind(null, 'locations');
-  exports.getEthnicity = getCensusData.bind(null, 'ethnicity');
-  exports.getHousing = getCensusData.bind(null, 'housing');
-  exports.getPopulation = getCensusData.bind(null, 'population');
-  exports.getRace = getCensusData.bind(null, 'race');
-
-  return exports;
-}))(intel.xdk.services.credentials.usatoday,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
-    
-  function getList(path, params) {
-    params = params || {};
-    params.apiKey = credentials.apiKey;
-    var url = baseUrl + path + '.json?' + $.param(params);
-    return $.ajax({url: url, dataType: "json"});
-  }
-
-  function getDetailedInfo(path, params) {
-    params = params || {};
-    params.apiKey = credentials.apiKey;
-    var url = baseUrl + 'movies/' + params.id + path + '.json?';
-    var params_temp = {};
-    for (var prop in params) {
-      if((prop!='id') && Object.prototype.hasOwnProperty.call(params,prop)){
-        params_temp[prop] = params[prop];  
-      }
-    }
-    url = url + $.param(params_temp);
-    return $.ajax({url: url, dataType: "json"});
-  }
-
-  exports.box_office = getList.bind(null, 'lists/movies/box_office');
-  exports.in_theatres = getList.bind(null, 'lists/movies/in_theaters');
-  exports.opening = getList.bind(null, 'lists/movies/opening');
-  exports.upcoming = getList.bind(null, 'lists/movies/upcoming');
-  exports.top_rentals = getList.bind(null, 'lists/dvds/top_rentals');
-  exports.current_releases = getList.bind(null, 'lists/dvds/current_releases');
-  exports.new_releases = getList.bind(null, 'lists/dvds/new_releases');
-  exports.upcomingDVD = getList.bind(null, 'lists/dvds/upcoming');
-  exports.movie_info = getDetailedInfo.bind(null,'');
-  exports.cast_info = getDetailedInfo.bind(null, '/cast');
-  exports.movie_clips = getDetailedInfo.bind(null, '/clips');
-  exports.movie_reviews = getDetailedInfo.bind(null, '/reviews');
-  exports.movie_similar = getDetailedInfo.bind(null, '/similar');
-  exports.movie_alias = getList.bind(null, 'movie_alias');
-  exports.search = getList.bind(null, 'movies');
-  exports.listsDirectory = getList.bind(null, '');
-  exports.movieListsDirectory = getList.bind(null, 'lists/movies');
-  exports.dvdListsDirectory = getList.bind(null, 'lists/dvds');
-
-  return exports;
-}))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.klout = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.klout.com/v2/';
@@ -372,6 +308,24 @@ intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
   
   return exports;
 }))(intel.xdk.services.credentials.sandbox,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'http://api.usatoday.com/open/';
+
+  function getCensusData(path, params) {
+    params = params || {};
+    var url = baseUrl + 'census/' + path + '?api_key=' + credentials.apiKey + '&' + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.getLocations = getCensusData.bind(null, 'locations');
+  exports.getEthnicity = getCensusData.bind(null, 'ethnicity');
+  exports.getHousing = getCensusData.bind(null, 'housing');
+  exports.getPopulation = getCensusData.bind(null, 'population');
+  exports.getRace = getCensusData.bind(null, 'race');
+
+  return exports;
+}))(intel.xdk.services.credentials.usatoday,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   var exports = {};
   
@@ -950,65 +904,69 @@ intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.foursquare,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.itunes = ((function (credentials, helpers) {
-  'use strict';
-
-  var ITUNES = 'https://itunes.apple.com/search?';
-
-  return {
-    search: function(params) {
-      return $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: ITUNES + $.param(params)
-      });
-    }
-  };
-
-})
-)(intel.xdk.services.credentials.itunes,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.spotify = ((function (credentials) {
+intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
   var exports = {};
+  var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
+    
+  function getList(path, params) {
+    params = params || {};
+    params.apiKey = credentials.apiKey;
+    var url = baseUrl + path + '.json?' + $.param(params);
+    return $.ajax({url: url, dataType: "json"});
+  }
 
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
+  function getDetailedInfo(path, params) {
+    params = params || {};
+    params.apiKey = credentials.apiKey;
+    var url = baseUrl + 'movies/' + params.id + path + '.json?';
+    var params_temp = {};
+    for (var prop in params) {
+      if((prop!='id') && Object.prototype.hasOwnProperty.call(params,prop)){
+        params_temp[prop] = params[prop];  
       }
-      return x;
     }
+    url = url + $.param(params_temp);
+    return $.ajax({url: url, dataType: "json"});
   }
 
-  var searchURL = 'https://api.spotify.com/v1/';
-
-  function getSearchData(path, params) {
-    params = jsonCleaner(params);
-    var url = searchURL + path + "?" + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  function getSpecificData(path, params) {
-    params = jsonCleaner(params);
-    var url = searchURL + path + "/" + params.id;
-    return $.ajax({url: url});
-  }
-
-  exports.search = getSearchData.bind(null, "search");
-  exports.lookupArtist = getSpecificData.bind(null, "artists");
-  exports.lookupAlbum = getSpecificData.bind(null, "albums");
-  exports.lookupTrack = getSpecificData.bind(null, "tracks");
+  exports.box_office = getList.bind(null, 'lists/movies/box_office');
+  exports.in_theatres = getList.bind(null, 'lists/movies/in_theaters');
+  exports.opening = getList.bind(null, 'lists/movies/opening');
+  exports.upcoming = getList.bind(null, 'lists/movies/upcoming');
+  exports.top_rentals = getList.bind(null, 'lists/dvds/top_rentals');
+  exports.current_releases = getList.bind(null, 'lists/dvds/current_releases');
+  exports.new_releases = getList.bind(null, 'lists/dvds/new_releases');
+  exports.upcomingDVD = getList.bind(null, 'lists/dvds/upcoming');
+  exports.movie_info = getDetailedInfo.bind(null,'');
+  exports.cast_info = getDetailedInfo.bind(null, '/cast');
+  exports.movie_clips = getDetailedInfo.bind(null, '/clips');
+  exports.movie_reviews = getDetailedInfo.bind(null, '/reviews');
+  exports.movie_similar = getDetailedInfo.bind(null, '/similar');
+  exports.movie_alias = getList.bind(null, 'movie_alias');
+  exports.search = getList.bind(null, 'movies');
+  exports.listsDirectory = getList.bind(null, '');
+  exports.movieListsDirectory = getList.bind(null, 'lists/movies');
+  exports.dvdListsDirectory = getList.bind(null, 'lists/dvds');
 
   return exports;
-}))(intel.xdk.services.credentials.spotify,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
+
+  function getPlaceData(path, params) {
+    params = params || {};
+    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
+  exports.textSearch = getPlaceData.bind(null, 'textsearch');
+  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
+  exports.placeDetails = getPlaceData.bind(null, 'details');
+
+  return exports;
+}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.wunderground = ((function (credentials, helpers) {
   'use strict';
 
@@ -1059,23 +1017,65 @@ intel.xdk.services.iodocs_.wunderground = ((function (credentials, helpers) {
 
 })
 )(intel.xdk.services.credentials.wunderground,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
+intel.xdk.services.iodocs_.spotify = ((function (credentials) {
   var exports = {};
-  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
 
-  function getPlaceData(path, params) {
-    params = params || {};
-    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+
+  var searchURL = 'https://api.spotify.com/v1/';
+
+  function getSearchData(path, params) {
+    params = jsonCleaner(params);
+    var url = searchURL + path + "?" + $.param(params);
     return $.ajax({url: url});
   }
 
-  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
-  exports.textSearch = getPlaceData.bind(null, 'textsearch');
-  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
-  exports.placeDetails = getPlaceData.bind(null, 'details');
+  function getSpecificData(path, params) {
+    params = jsonCleaner(params);
+    var url = searchURL + path + "/" + params.id;
+    return $.ajax({url: url});
+  }
+
+  exports.search = getSearchData.bind(null, "search");
+  exports.lookupArtist = getSpecificData.bind(null, "artists");
+  exports.lookupAlbum = getSpecificData.bind(null, "albums");
+  exports.lookupTrack = getSpecificData.bind(null, "tracks");
 
   return exports;
-}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.spotify,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.itunes = ((function (credentials, helpers) {
+  'use strict';
+
+  var ITUNES = 'https://itunes.apple.com/search?';
+
+  return {
+    search: function(params) {
+      return $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: ITUNES + $.param(params)
+      });
+    }
+  };
+
+})
+)(intel.xdk.services.credentials.itunes,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.flickr = ((function (credentials, helpers) {
   var exports = {photos:{}, people:{}, galleries:{}, interestingness:{}, photosets:{}};
     
@@ -1198,28 +1198,6 @@ intel.xdk.services.iodocs_.MarkitOnDemand = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.MarkitOnDemand,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.forecast = ((function (credentials, helpers) {
-  'use strict';
-
-  var FORECAST = 'https://api.forecast.io';
-
-  var forecast_url = function(method, params) {
-    return FORECAST + '/' + method + '/' + credentials.apiKey + '/' +
-      params.latitude + ',' + params.longitude + (params.time ? (',' + params.time) : '');
-  };
-
-  return {
-    forecast: function(params) {
-      return $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: forecast_url('forecast', params)
-      });
-    }
-  };
-
-})
-)(intel.xdk.services.credentials.forecast,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.woot = ((function (credentials, helpers) {
   'use strict';
 
@@ -1256,6 +1234,28 @@ intel.xdk.services.iodocs_.woot = ((function (credentials, helpers) {
 
 })
 )(intel.xdk.services.credentials.woot,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.forecast = ((function (credentials, helpers) {
+  'use strict';
+
+  var FORECAST = 'https://api.forecast.io';
+
+  var forecast_url = function(method, params) {
+    return FORECAST + '/' + method + '/' + credentials.apiKey + '/' +
+      params.latitude + ',' + params.longitude + (params.time ? (',' + params.time) : '');
+  };
+
+  return {
+    forecast: function(params) {
+      return $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: forecast_url('forecast', params)
+      });
+    }
+  };
+
+})
+)(intel.xdk.services.credentials.forecast,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.instagram = ((function (credentials, helpers) {
   var exports = {};
 
@@ -2071,42 +2071,74 @@ intel.xdk.services.iodocs_.db_core = ((function (credentials, helpers) {
 
   return exports;
 }))(intel.xdk.services.credentials.db_core,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
+intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
   var exports = {};
     
-  function init() {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', credentials.apiKey, 'auto');
+function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (var k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
   }
-    
-  exports.trackPageView = function(params) {
-      init();
-      var d = $.Deferred();
-      
-      if (params.Location) ga('set','location', params.Location);
-      if (params.Page) ga('set','page', params.Page);
-      if (params.Title) ga('set','title', params.Title);
-      ga('send', 'pageview');
-      
-      d.resolve('Pageview sent!');
-      return d.promise();
+  
+  /* Data Feed Function */
+  exports.methodA1 = function (params) {
+    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
+    return $.ajax({url: url});
   };
     
-    exports.trackEvent = function(params) {
-        init();
-        var d = $.Deferred();
-        if (params.Label) ga('set','eventLabel', params.Label);
-        if (params.Value) ga('set','eventValue', params.Value);
-        ga('send', 'event', params.Category, params.Action);
-        d.resolve('Check your analytics account');
-        return d.promise();
-    };
+  function get_jambase_handler(endpoint_uri)
+  {
+      return function(params) {
+        params = jsonCleaner(params);
+        var url = endpoint_uri; 
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+      };
+  }
+    
+  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
+  function get_eventBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/events');
+  }
+  
+  function get_artistBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/artists');
+  }
 
+  function get_venuesBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/venues');
+  }
+  
+  exports.eventById           = get_eventBy_method();
+  exports.eventListByZipcode  = get_eventBy_method()
+  exports.eventListByArtistId = get_eventBy_method();
+  exports.eventListByVenueId  = get_eventBy_method();
+
+  exports.artistsByName       = get_artistBy_method();
+  exports.artistById          = get_artistBy_method();
+  
+  exports.venuesByName        = get_venuesBy_method();
+  exports.venuesByZipcode     = get_venuesBy_method();
+  exports.venueById           = get_venuesBy_method();
+    
   return exports;
-}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   var exports = {};
   var isInit;
@@ -2288,74 +2320,42 @@ intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   };
   return exports;
 }))(intel.xdk.services.credentials.kinvey,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
+intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
   var exports = {};
     
-function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (var k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
+  function init() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', credentials.apiKey, 'auto');
   }
-  
-  /* Data Feed Function */
-  exports.methodA1 = function (params) {
-    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
-    return $.ajax({url: url});
+    
+  exports.trackPageView = function(params) {
+      init();
+      var d = $.Deferred();
+      
+      if (params.Location) ga('set','location', params.Location);
+      if (params.Page) ga('set','page', params.Page);
+      if (params.Title) ga('set','title', params.Title);
+      ga('send', 'pageview');
+      
+      d.resolve('Pageview sent!');
+      return d.promise();
   };
     
-  function get_jambase_handler(endpoint_uri)
-  {
-      return function(params) {
-        params = jsonCleaner(params);
-        var url = endpoint_uri; 
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-      };
-  }
-    
-  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
-  function get_eventBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/events');
-  }
-  
-  function get_artistBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/artists');
-  }
+    exports.trackEvent = function(params) {
+        init();
+        var d = $.Deferred();
+        if (params.Label) ga('set','eventLabel', params.Label);
+        if (params.Value) ga('set','eventValue', params.Value);
+        ga('send', 'event', params.Category, params.Action);
+        d.resolve('Check your analytics account');
+        return d.promise();
+    };
 
-  function get_venuesBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/venues');
-  }
-  
-  exports.eventById           = get_eventBy_method();
-  exports.eventListByZipcode  = get_eventBy_method()
-  exports.eventListByArtistId = get_eventBy_method();
-  exports.eventListByVenueId  = get_eventBy_method();
-
-  exports.artistsByName       = get_artistBy_method();
-  exports.artistById          = get_artistBy_method();
-  
-  exports.venuesByName        = get_venuesBy_method();
-  exports.venuesByZipcode     = get_venuesBy_method();
-  exports.venueById           = get_venuesBy_method();
-    
   return exports;
-}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
   var exports = {};
   
@@ -3145,43 +3145,6 @@ intel.xdk.services.iodocs_.bing_search = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.bing_search,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
-  var exports = {};
-  
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  var baseUrl = 'https://openapi.etsy.com/v2/';
-  
-  function getEtsyData(path, params){
-    params = jsonCleaner(params);
-    var url = baseUrl + path + '?api_key=' + credentials.apiKey + "&" + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.listingSearch = getEtsyData.bind('null', 'listings/active');
-  exports.listingTrending = getEtsyData.bind('null', 'listings/trending');
-  exports.shopSearch = getEtsyData.bind('null', 'shops');
-  exports.treasurySearch = getEtsyData.bind('null', 'treasuries');
-  exports.userSearch = getEtsyData.bind('null', 'users');
-  
-  return exports;
-}))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3246,6 +3209,43 @@ intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.EventBrite,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
+  var exports = {};
+  
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+  
+  var baseUrl = 'https://openapi.etsy.com/v2/';
+  
+  function getEtsyData(path, params){
+    params = jsonCleaner(params);
+    var url = baseUrl + path + '?api_key=' + credentials.apiKey + "&" + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.listingSearch = getEtsyData.bind('null', 'listings/active');
+  exports.listingTrending = getEtsyData.bind('null', 'listings/trending');
+  exports.shopSearch = getEtsyData.bind('null', 'shops');
+  exports.treasurySearch = getEtsyData.bind('null', 'treasuries');
+  exports.userSearch = getEtsyData.bind('null', 'users');
+  
+  return exports;
+}))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
   var exports = {};
     
@@ -3850,6 +3850,40 @@ intel.xdk.services.iodocs_.UPS = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.UPS,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.centralIndex = ((function (credentials, helpers) {
+  var exports = {};
+  
+  var baseUrl = 'http://api.centralindex.com';
+  
+  function getCentralIndexData(type, path, params) {
+    alert(credentials.apiKey);
+    var url = baseUrl + path + '?api_key=' + credentials.apiKey + $.param(params);
+    return $.ajax({
+      type: type,
+      url: url
+    });
+  }
+
+  exports.advertiserUpdated =  getCentralIndexData.bind(null, 'GET', '/v1/advertiser/updated');
+  exports.autocompleteCategory = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/category');
+  exports.autocompleteKeyword = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/keyword');
+  exports.autocompleteLocation = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/location');
+  exports.entity = getCentralIndexData.bind(null, 'GET', '/v1/entity');
+  exports.entityAdvertisers = getCentralIndexData.bind(null, 'GET', '/v1/entity/advertisers');
+  exports.entitySupplier = getCentralIndexData.bind(null, 'GET', '/v1/entity/by_supplier_id');
+  exports.entitySearchKeywordNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/keyword/bynearest');
+  exports.entitySearchWhat = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what');
+  exports.entitySeatchWhatLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
+  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/byboundingbox');
+  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bynearest');
+  exports.entitySearchWho = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
+  exports.entitySearchWhoLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bylocation');
+  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/byboundingbox');
+  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bynearest');
+  exports.locationContext = getCentralIndexData.bind(null, 'GET', '/v1/location/context');
+
+  return exports;
+}))(intel.xdk.services.credentials.centralIndex,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.github = ((function (credentials, helpers) {
   var exports = {};
   /* OAuth Functions */
@@ -4137,40 +4171,6 @@ intel.xdk.services.iodocs_.github = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.github,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.centralIndex = ((function (credentials, helpers) {
-  var exports = {};
-  
-  var baseUrl = 'http://api.centralindex.com';
-  
-  function getCentralIndexData(type, path, params) {
-    alert(credentials.apiKey);
-    var url = baseUrl + path + '?api_key=' + credentials.apiKey + $.param(params);
-    return $.ajax({
-      type: type,
-      url: url
-    });
-  }
-
-  exports.advertiserUpdated =  getCentralIndexData.bind(null, 'GET', '/v1/advertiser/updated');
-  exports.autocompleteCategory = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/category');
-  exports.autocompleteKeyword = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/keyword');
-  exports.autocompleteLocation = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/location');
-  exports.entity = getCentralIndexData.bind(null, 'GET', '/v1/entity');
-  exports.entityAdvertisers = getCentralIndexData.bind(null, 'GET', '/v1/entity/advertisers');
-  exports.entitySupplier = getCentralIndexData.bind(null, 'GET', '/v1/entity/by_supplier_id');
-  exports.entitySearchKeywordNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/keyword/bynearest');
-  exports.entitySearchWhat = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what');
-  exports.entitySeatchWhatLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
-  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/byboundingbox');
-  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bynearest');
-  exports.entitySearchWho = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
-  exports.entitySearchWhoLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bylocation');
-  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/byboundingbox');
-  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bynearest');
-  exports.locationContext = getCentralIndexData.bind(null, 'GET', '/v1/location/context');
-
-  return exports;
-}))(intel.xdk.services.credentials.centralIndex,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.edmunds = ((function (credentials, helpers) {
   var exports = {};
     
@@ -8860,11 +8860,14 @@ intel.xdk.services.iodocs_.edmunds = ((function (credentials, helpers) {
 }))(intel.xdk.services.credentials.edmunds,intel.xdk.services.iodocs_.helpers);
 /*xdk-auto-gen:service-methods:common:end*/
 /*xdk-auto-gen:service-methods:LNLScenes:start:37975fa05e3dfcc002cf4848ebdc15c5*/
-intel.xdk.services.LNLScenes=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLScenes",intel.xdk.services.iodocs_.LNL.Scenes,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"4",__proto__:{}});
+intel.xdk.services.LNLScenes=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLScenes",intel.xdk.services.iodocs_.LNL.Scenes,{txtEmail:"",txtPassword:"",p1:"",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLScenes:end*/
 /*xdk-auto-gen:service-methods:LNLonscenedevices:start:4b48529a6d5d33326a99d573bf9f4710*/
-intel.xdk.services.LNLonscenedevices=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLonscenedevices",intel.xdk.services.iodocs_.LNL.onscenedevices,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"4",__proto__:{}});
+intel.xdk.services.LNLonscenedevices=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLonscenedevices",intel.xdk.services.iodocs_.LNL.onscenedevices,{txtEmail:"",txtPassword:"",p1:"",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLonscenedevices:end*/
 /*xdk-auto-gen:service-methods:LNLonscenedevices:start:f42e9c3a15be304c765960cb0c3a2bff*/
-intel.xdk.services.LNLonscenedevices=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLonscenedevices",intel.xdk.services.iodocs_.LNL.onscenedevices,{txtEmail:"faysalbasci@yahoo.com",txtPassword:"123456",p1:"4",__proto__:{}});
+intel.xdk.services.LNLonscenedevices=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLonscenedevices",intel.xdk.services.iodocs_.LNL.onscenedevices,{txtEmail:"",txtPassword:"",p1:"",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLonscenedevices:end*/
+/*xdk-auto-gen:service-methods:LNLsceneDevice:start:348011233a60c7add3fc75414bc90b7b*/
+intel.xdk.services.LNLsceneDevice=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLsceneDevice",intel.xdk.services.iodocs_.LNL.sceneDevice,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"17",__proto__:{}});
+/*xdk-auto-gen:service-methods:LNLsceneDevice:end*/
