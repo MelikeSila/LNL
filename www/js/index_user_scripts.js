@@ -49,12 +49,6 @@
          activate_subpage("#uib_page_5"); 
     });
 
-        /* button  Güvenli Çıkış */
-    $(document).on("click", ".uib_w_17", function(evt)
-    {
-         activate_subpage("#uib_page_7"); 
-    });
-    
     }
  document.addEventListener("app.Ready", register_event_handlers, false);
 })();

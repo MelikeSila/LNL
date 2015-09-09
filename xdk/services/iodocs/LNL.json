@@ -5,10 +5,6 @@
     "dashboardUrl": "http://www.ayatar.com/ayanet_service.php?SERV=scenes&txtEmail=info@lnl.com.tr&txtPassword=1234",
     "methods": [
       {
-        "MethodName": "Virtual",
-        "Synopsis": "Grabs information from the A1 data set"
-      },
-      {
         "MethodName": "Scenes",
         "Synopsis": "Bolgeler",        
         "parameters": [
