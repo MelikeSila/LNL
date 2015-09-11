@@ -84,6 +84,33 @@
                 "Description": "Id"
             }
         ]
+      },
+      {
+        "MethodName": "modelparameters",
+        "Synopsis": "Status",        
+        "parameters": [
+            {
+                "Name": "txtEmail",
+                "Required": "Y",
+                "Default": "",
+                "Type": "String",
+                "Description": "UserName"
+            },
+            {
+                "Name": "txtPassword",
+                "Required": "Y",
+                "Default": "",
+                "Type": "String",
+                "Description": "UserPassword"
+            },
+            {
+                "Name": "p1",
+                "Required": "Y",
+                "Default": "",
+                "Type": "Integer",
+                "Description": "Id"
+            }
+        ]
       }
     ]
   }

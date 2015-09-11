@@ -89,6 +89,10 @@
         <script type="application/javascript" src="google_maps/google_maps.js"></script>
 
         <script type="application/javascript" src="app_framework/pageChangeRepeater.js"></script>
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
     </head>
 
     <body>
@@ -109,7 +113,7 @@
             <h1></h1>
         </header>
         <header class="wrapping-col wrap-element uib_w_33" data-uib="app_framework/header" data-ver="2" id="af-header-2">
-            <a class="button widget uib_w_39 d-margins icon home green" data-uib="app_framework/button" data-ver="1">Anasayfa</a>
+            <a class="button widget uib_w_39 d-margins icon home green" data-uib="app_framework/button" data-ver="1" id="anasayfa">Anasayfa</a>
 
             <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_59 header-right d-margins media-button-text-bottom" data-uib="media/graphic_button"
             data-ver="0" href="http://www.lnl.com.tr/">
@@ -123,46 +127,50 @@
 
             <div class="upage panel" id="mainpage" data-header="af-header-0" data-footer="af-footer-1">
 
-                <div id="uib_page_7" class="upage-content vertical-col left ">
-                    <div class="grid grid-pad urow uib_row_17 row-height-17" data-uib="layout/row" data-ver="0">
-                        <div class="col uib_col_20 col-0_12-12 Location" data-uib="layout/col" data-ver="0">
-                            <div class="widget-container content-area vertical-col center">
+                <div class="upage-outer">
+                    <div id="uib_page_7" class="upage-content vertical-col left ">
+                        <div class="grid grid-pad urow uib_row_17 row-height-17" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_20 col-0_12-12 Location" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col center">
 
-                                <div class="widget uib_w_61 scale-image d-margins" data-uib="media/img" data-ver="0">
-                                    <figure class="figure-align">
-                                        <img src=" http://www.lnl.com.tr/wp-content/uploads/2014/12/LogoMR_trans.png">
+                                    <div class="widget uib_w_61 scale-image d-margins" data-uib="media/img" data-ver="0">
+                                        <figure class="figure-align">
+                                            <img src=" http://www.lnl.com.tr/wp-content/uploads/2014/12/LogoMR_trans.png">
 
-                                        <figcaption data-position="bottom"></figcaption>
-                                    </figure>
-                                </div>
-
-                                <div class="table-thing with-label widget uib_w_66 d-margins" data-uib="app_framework/input" data-ver="1">
-                                    <form action="" method="post" name="login" class="little-chef-form">
-                                        <div class="table-thing with-label widget uib_w_67 d-margins" data-uib="app_framework/input" data-ver="1">
-                                            <label class="narrow-control label-inline" for="e_posta" name="e_posta">E-Posta</label>
-
-                                            <input class="wide-control" type="email" id="e_posta">
-                                        </div>
-                                        <div class="table-thing with-label widget uib_w_68 d-margins" data-uib="app_framework/input" data-ver="1">
-                                            <label class="narrow-control label-inline" for="password" name="password">Şifre</label>
-                                            <input class="wide-control" type="password" id="password">
-                                        </div>
-                                    </form>
-
-                                </div>
-
-                                <div class="grid grid-pad urow uib_row_24 row-height-24" data-uib="layout/row" data-ver="0">
-                                    <div class="col uib_col_31 col-1_12-12" data-uib="layout/col" data-ver="0">
-                                        <div class="widget-container content-area vertical-col">
-
-                                            <a class="button widget uib_w_64 d-margins green" data-uib="app_framework/button" data-ver="1" onclick="LogIn()">Giriş</a><span class="uib_shim"></span>
-                                        </div>
+                                            <figcaption data-position="bottom"></figcaption>
+                                        </figure>
                                     </div>
-                                    <span class="uib_shim"></span>
-                                </div><span class="uib_shim"></span>
+
+                                    <div class="table-thing with-label widget uib_w_66 d-margins" data-uib="app_framework/input" data-ver="1">
+                                        <form action="" method="post" name="login" class="little-chef-form">
+                                            <div class="table-thing with-label widget uib_w_67 d-margins" data-uib="app_framework/input" data-ver="1">
+                                                <label class="narrow-control label-inline" for="e_posta" name="e_posta">E-Posta</label>
+
+                                                <input class="wide-control" type="email" id="e_posta">
+                                            </div>
+                                            <div class="table-thing with-label widget uib_w_68 d-margins" data-uib="app_framework/input" data-ver="1">
+                                                <label class="narrow-control label-inline" for="password" name="password">Şifre</label>
+
+                                                <input class="wide-control" type="password" id="password">
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="grid grid-pad urow uib_row_24 row-height-24" data-uib="layout/row" data-ver="0">
+                                        <div class="col uib_col_31 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                            <div class="widget-container content-area vertical-col">
+
+                                                <a class="button widget uib_w_64 d-margins green" data-uib="app_framework/button" data-ver="1" onclick="LogIn()">Giriş</a><span class="uib_shim"></span>
+                                            </div>
+                                        </div>
+                                        <span class="uib_shim"></span>
+                                    </div><span class="uib_shim"></span>
+                                </div>
                             </div>
+                            <span class="uib_shim"></span>
                         </div>
-                        <span class="uib_shim"></span>
+
                     </div>
 
                 </div>
@@ -179,67 +187,18 @@
 
                                     <div class="grid grid-pad urow uib_row_25 row-height-25" data-uib="layout/row" data-ver="0">
                                         <div class="col uib_col_32 col-1_12-12" data-uib="layout/col" data-ver="0">
-                                            <div class="widget-container content-area vertical-col">
+                                            <div class="widget-container content-area vertical-col left">
 
                                                 <ul class="list widget uib_w_75 d-margins" data-uib="app_framework/listview" data-ver="1">
                                                     <li class="widget uib_w_54 default_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLScenes" data-sc="multiple" data-rpath="[]"><a class="fa fa-sitemap">{{_name}}</a>
                                                     </li>
+
                                                 </ul><span class="uib_shim"></span>
                                             </div>
                                         </div>
                                         <span class="uib_shim"></span>
                                     </div>
-                                    <div class="grid grid-pad urow uib_row_26 row-height-26" data-uib="layout/row" data-ver="0">
-                                        <div class="col uib_col_33 col-1_12-12" data-uib="layout/col" data-ver="0">
-                                            <div class="widget-container content-area vertical-col">
 
-                                                <div class="grid grid-pad urow uib_row_27 row-height-27" data-uib="layout/row" data-ver="0">
-                                                    <div class="col uib_col_34 col-2_12-12" data-uib="layout/col" data-ver="0">
-                                                        <div class="widget-container content-area vertical-col">
-
-                                                            <div class="grid grid-pad urow uib_row_28 row-height-28" data-uib="layout/row" data-ver="0">
-                                                                <div class="col uib_col_35 col-3_12-12" data-uib="layout/col" data-ver="0">
-                                                                    <div class="widget-container content-area vertical-col">
-
-                                                                        <ul class="list widget uib_w_78 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                                                            <li class="widget uib_w_56 list2_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_54" data-sc="multiple" data-rpath="._childs[]" id="Scene_Name" onclick="call_LNLonscenedevices({{_id}})">
-                                                                                <a class="fa fa-flash" value="5" id="{{_id}}">{{_name}}</a>
-                                                                            </li>
-                                                                        </ul><span class="uib_shim"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <span class="uib_shim"></span>
-                                                            </div>
-                                                            <div class="grid grid-pad urow uib_row_29 row-height-29" data-uib="layout/row" data-ver="0">
-                                                                <div class="col uib_col_36 col-3_12-12" data-uib="layout/col" data-ver="0">
-                                                                    <div class="widget-container content-area vertical-col">
-
-                                                                        <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
-                                                                            <div class="col uib_col_37 col-4_12-12" data-uib="layout/col" data-ver="0">
-                                                                                <div class="widget-container content-area vertical-col">
-
-                                                                                    <ul class="list widget uib_w_79 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                                                                        <li class="widget uib_w_63 template" data-uib="app_framework/listitem" data-ver="1" data-sc="multiple" data-sm="LNLonscenedevices" data-rpath="(base)" onclick="call_sceneDevice({{_id}})">
-                                                                                            <a>{{_name}}</a>
-                                                                                        </li>
-                                                                                    </ul><span class="uib_shim"></span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <span class="uib_shim"></span>
-                                                                        </div>
-                                                                        <span class="uib_shim"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <span class="uib_shim"></span>
-                                                            </div><span class="uib_shim"></span>
-                                                        </div>
-                                                    </div>
-                                                    <span class="uib_shim"></span>
-                                                </div><span class="uib_shim"></span>
-                                            </div>
-                                        </div>
-                                        <span class="uib_shim"></span>
-                                    </div>
                                     <span class="uib_shim"></span>
                                 </div>
                             </div>
@@ -252,10 +211,7 @@
                             <div class="col uib_col_14 col-0" data-uib="layout/col" data-ver="0">
                                 <div class="widget-container content-area vertical-col">
 
-                                    <ul class="list widget uib_w_72 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_74 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="(base)"><a>{{_name}}</a>
-                                        </li>
-                                    </ul><span class="uib_shim"></span>
+                                    <span class="uib_shim"></span>
                                 </div>
                             </div>
                             <span class="uib_shim"></span>
@@ -268,13 +224,13 @@
                             <div class="col uib_col_27 col-0_12-12" data-uib="layout/col" data-ver="0">
                                 <div class="widget-container content-area vertical-col">
 
-                                    <div class="widget uib_w_46 d-margins template" data-uib="media/text" data-ver="0" data-sm="-- .uib_w_56" data-sc="single" data-rpath="(base)">
-                                        <div class="widget-container left-receptacle"></div>
-                                        <div class="widget-container right-receptacle"></div>
-                                        <div>
-                                            <p>{{_path._center_of_latitude}} -{{_path._center_of_longitude}}</p>
-                                        </div>
-                                    </div><a class="button widget uib_w_48 d-margins icon location" data-uib="app_framework/button" data-ver="1">Location</a><span class="uib_shim"></span>
+                                    <a class="button widget uib_w_48 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1" id="Geri1">Geri</a>
+                                    <ul class="list widget uib_w_76 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_56 list2_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_54" data-sc="multiple" data-rpath="._childs[]" id="Scene_Name" onclick="call_LNLonscenedevices({{_id}})">
+                                            <a class="fa fa-flash" id="{{_id}}">{{_name}}</a>
+                                        </li>
+                                    </ul>
+                                    <span class="uib_shim"></span>
                                 </div>
                             </div>
                             <span class="uib_shim"></span>
@@ -293,26 +249,67 @@
                                                 <span></span>
                                             </label>
                                         </div>
-                                    </div><span class="uib_shim"></span>
+                                    </div>
+                                    <span class="uib_shim"></span>
                                 </div>
                             </div>
                             <span class="uib_shim"></span>
                         </div>
                     </div>
-                    <div id="uib_page_5" class="upage-content vertical-col left hidden"><a class="button widget uib_w_25 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1">Geri</a>
+                    <div id="uib_page_5" class="upage-content vertical-col left hidden">
                         <div class="grid grid-pad urow uib_row_14 row-height-14" data-uib="layout/row" data-ver="0">
                             <div class="col uib_col_16 col-0" data-uib="layout/col" data-ver="0">
                                 <div class="widget-container content-area vertical-col">
 
-                                    <div class="widget uib_w_49 maps-size d-margins" data-uib="media/google_maps" data-ver="0" data-zoom="8" data-sm="LNLScenes" data-sc="multiple" data-rpath="[]" data-array="[]" data-long="{{_path._center_of_longitude}}" data-lat="{{_path._center_of_latitude}}"
-                                    data-center-longitude="{{_path._center_of_longitude}}" data-center-latitude="{{_path._center_of_latitude}}"></div>
-                                    <span class="uib_shim"></span>
+                                    <a class="button widget uib_w_25 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1" id="Geri2">Geri</a>
+                                    <ul class="list widget uib_w_77 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_63 list3_color template" data-uib="app_framework/listitem" data-ver="1" data-sc="multiple" data-sm="LNLonscenedevices" data-rpath="[]" onclick="call_sceneDevice({{_device._id}})">
+                                            <a>{{_name}}</a>
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
                                 </div>
                             </div>
 
                             <span class="uib_shim"></span>
                         </div>
 
+                    </div>
+                    <div id="uib_page_8" class="upage-content vertical-col left hidden">
+                        <div class="grid grid-pad urow uib_row_26 row-height-26" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_33 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="button widget uib_w_82 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1" id="Geri3">Geri</a>
+                                    <ul class="list widget uib_w_83 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="._device"><a>{{_default_name}}</a>
+
+                                        </li>
+                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" id="device_model_id" data-rpath="._device">{{_device_model._id}}
+
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <div id="uib_page_9" class="upage-content vertical-col left hidden">
+                        <div class="grid grid-pad urow uib_row_28 row-height-28" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_35 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <ul class="list widget uib_w_84 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_85 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="single" data-rpath="[]._parameter"><a>{{_description}}</a>
+                                        </li>
+                                        <li class="widget uib_w_86" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                                        </li>
+                                        <li class="widget uib_w_87" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                                        </li>
+                                    </ul><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -326,7 +323,8 @@
                 var formPassword = document.forms.login.password.value;
                 // Validate username and password
                 
-                
+                //sadece id sini kullanmak istediğim bir listi hide yaptım.
+                document.getElementById("device_model_id").style.display = 'none'; //block
                 
                 if (formUsername === null || formUsername === "") {
                     alert("Username must be filled out");
@@ -351,6 +349,7 @@
                             intel.xdk.services.LNLScenes({cache:false, txtEmail:formUsername , txtPassword:formPassword, p1:"4"}).then(function(data){
                                 console.log("here is the data from the service", data);
                             })
+               
                             return;                      
                         }
                     });
@@ -369,8 +368,13 @@
                             alert("Bu bölgede herhangi bir cihaz bulunmamaktadır!");
                             //bu kısımda alt web servislerin verilerini sıfırlamam gerekioyr.
                         }else{
+                            activate_subpage("#uib_page_5");
 //                              onscenedevices
                             intel.xdk.services.LNLonscenedevices({txtEmail:formUsername , txtPassword:formPassword, p1:_id}).then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+//                              onscenedevices
+                            intel.xdk.services.LNLsceneDevice({txtEmail:formUsername , txtPassword:formPassword, p1:""}).then(function(data){
                                 console.log("here is the data from the service", data);
                             })
                             return;                      
@@ -391,6 +395,7 @@
                             alert("Cihaz hakkında bilgi bulunamadı!");
 //                            bu kısımda alt web servislerin verilerini sıfırlamam gerekiyor ki aşağıda bir öncekinden kalan açık kalmasın(eğer bu dataları birbirine bağlarsam buna // //                               ihtiyaç duymayacağım sanırım.)
                         }else{
+                            activate_subpage("#uib_page_8");
 //                              onscenedevices
                             intel.xdk.services.LNLsceneDevice({txtEmail:formUsername , txtPassword:formPassword, p1:_id}).then(function(data){
                                 console.log("here is the data from the service", data);
@@ -400,7 +405,6 @@
                     });
             }
         </script>
-
         <script>
             function LogOut(){
                 activate_subpage("#uib_page_7"); 

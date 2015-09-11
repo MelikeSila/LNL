@@ -12,43 +12,46 @@
     {
         /* your code goes here */ 
     });
-        
-        /* button  {{_name}} */
-    $(document).on("click", ".uib_w_18", function(evt)
-    {
-         activate_subpage("#uib_page_5"); 
-    });
-    
-        /* button  Geri */
-    $(document).on("click", ".uib_w_24", function(evt)
-    {
-         activate_subpage("#uib_page_3"); 
-    });
-    
-        /* button  Geri */
-    $(document).on("click", ".uib_w_25", function(evt)
-    {
-         activate_subpage("#uib_page_4"); 
-    });
-    
+     
         /* button  Anasayfa */
     $(document).on("click", ".uib_w_39", function(evt)
     {
          activate_subpage("#uib_page_3"); 
     });
      
-        /* listitem  .uib_w_45 */
-    $(document).on("click", ".uib_w_45", function(evt)
+        /* listitem  {{_name}} */
+    $(document).on("click", ".uib_w_54", function(evt)
     {
          activate_subpage("#uib_page_4"); 
     });
-    
-        /* button  Location */
-    $(document).on("click", ".uib_w_48", function(evt)
+
+        /* button  #Geri1 */
+    $(document).on("click", "#Geri1", function(evt)
+    {
+         activate_subpage("#uib_page_3"); 
+    });     
+     
+        /* button  Geri */
+    $(document).on("click", ".uib_w_25", function(evt)
+    {
+         activate_subpage("#uib_page_4"); 
+    });
+     
+     
+        /* button  Geri */
+    $(document).on("click", ".uib_w_82", function(evt)
     {
          activate_subpage("#uib_page_5"); 
     });
+     
 
+     
+        /* listitem  {{_default_name}} */
+    $(document).on("click", ".uib_w_74", function(evt)
+    {
+         activate_subpage("#uib_page_9"); 
+    });
+    
     }
  document.addEventListener("app.Ready", register_event_handlers, false);
 })();

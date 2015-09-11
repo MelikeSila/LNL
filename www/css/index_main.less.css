@@ -2253,7 +2253,7 @@ body:not(#afui) .upage-outer {
 }
 @media all and (min-width: 0px) {
   #afui .row-height-20 > .col > .content-area {
-    min-height: 100px;
+    min-height: 241px;
   }
 }
 .sbs-container {
@@ -3459,8 +3459,8 @@ body:not(#afui) .upage-outer {
   color: blue;
 }
 .default_color {
-  color: #AFCDE9;
-  background-color: #276EB6;
+  color: #62B1F6;
+  background-color: #4E78A0;
   opacity: 0.8;
 }
 @media all and (min-width: 0px) {
@@ -3501,8 +3501,8 @@ body:not(#afui) .upage-outer {
   }
 }
 .list2_color {
-  color: #AFCDE9;
-  background-color: #2684B6;
+  color: #63B8FF;
+  background-color: #4682B4;
   opacity: 0.8;
 }
 .Giris_Button_color {
@@ -3589,7 +3589,7 @@ body:not(#afui) .upage-outer {
 }
 @media all and (min-width: 0px) {
   #afui .row-height-26 > .col > .content-area {
-    min-height: 332px;
+    min-height: 100px;
   }
 }
 .uib_row_25:not(.cright) > .col {
@@ -3612,7 +3612,7 @@ body:not(#afui) .upage-outer {
 }
 @media all and (min-width: 0px) {
   #afui .row-height-27 > .col > .content-area {
-    min-height: 256px;
+    min-height: 100px;
   }
 }
 .uib_row_26:not(.cright) > .col {
@@ -3622,14 +3622,14 @@ body:not(#afui) .upage-outer {
   padding-left: 20px;
 }
 @media all {
-  .col-1_12-12 {
+  .col-0_12-12 {
     width: auto;
     float: none !important;
   }
-  .urow:not(.cright) > .col-1_12-12 {
+  .urow:not(.cright) > .col-0_12-12 {
     padding-right: 0px !important;
   }
-  .urow.cright > .col-1_12-12 {
+  .urow.cright > .col-0_12-12 {
     padding-left: 0px !important;
   }
 }
@@ -3640,14 +3640,14 @@ body:not(#afui) .upage-outer {
   padding-left: 20px;
 }
 @media all {
-  .col-2_12-12 {
+  .col-0_12-12 {
     width: auto;
     float: none !important;
   }
-  .urow:not(.cright) > .col-2_12-12 {
+  .urow:not(.cright) > .col-0_12-12 {
     padding-right: 0px !important;
   }
-  .urow.cright > .col-2_12-12 {
+  .urow.cright > .col-0_12-12 {
     padding-left: 0px !important;
   }
 }
@@ -3658,20 +3658,20 @@ body:not(#afui) .upage-outer {
   padding-left: 20px;
 }
 @media all {
-  .col-3_12-12 {
+  .col-0_12-12 {
     width: auto;
     float: none !important;
   }
-  .urow:not(.cright) > .col-3_12-12 {
+  .urow:not(.cright) > .col-0_12-12 {
     padding-right: 0px !important;
   }
-  .urow.cright > .col-3_12-12 {
+  .urow.cright > .col-0_12-12 {
     padding-left: 0px !important;
   }
 }
 @media all and (min-width: 0px) {
   #afui .row-height-28 > .col > .content-area {
-    min-height: 56px;
+    min-height: 100px;
   }
 }
 .uib_row_29:not(.cright) > .col {
@@ -3719,4 +3719,45 @@ body:not(#afui) .upage-outer {
   #afui .row-height-30 > .col > .content-area {
     min-height: 100px;
   }
+}
+@include split-button();
+@media all {
+  #afui .bar-bg {
+    background-color: #dadada;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+}
+@media all {
+  #afui .thumb-bg > .sidebar-thumb {
+    background-image: url('../sidebar/css/images/gripper.png');
+  }
+  #afui .thumb-bg > .sidebar-thumb {
+    background-color: ;
+  }
+  #afui .thumb-bg > .sidebar-thumb:hover,
+  #afui .thumb-bg > .sidebar-thumb:active {
+    background-color: #eeeeee;
+  }
+}
+@media all {
+  #afui .bar-gutter .sidebar-content > .grid-pad {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+#afui .panel > .upage {
+  overflow: hidden;
+}
+.list3_color {
+  color: #B0E2FF;
+  background-color: #6CA6CD;
+  opacity: 0.8;
+}
+.list4_color {
+  color: #BBFFFF;
+  background-color: #87CEFA;
+  opacity: 0.8;
 }

@@ -1,4 +1,4 @@
-/*xdk-auto-gen:service-methods:common:start:6eb47654a98158a66f7bc57cc27d0b0f*/
+/*xdk-auto-gen:service-methods:common:start:7dd851149f36b80805260091a48b34f9*/
 
 var intel;
 if (!intel) intel = {};
@@ -226,39 +226,87 @@ intel.xdk.services.iodocs_ = (function () {
 })();;
 intel.xdk.services.iodocs_.LNL = ((function(credentials) {
     var exports = {};
-  /* Data Feeds Function */
-  exports.Virtual = function (params) {
-    var url = "http://192.168.1.220:8080/ajaxHandler?page_id=14";
-    return $.ajax({url: url, type: 'GET'});
-  };
-    
-  exports.Scenes = function(params) {
-    params[''] = credentials.txtEmail;
-    params[''] = credentials.txtPassword;
-    params[''] = credentials.p1;
-    var url = "http://www.ayatar.com/ayanet_service.php?SERV=scenes"+ "&" + $.param(params);
-    return $.ajax({url: url, type: 'GET'}); 
-  };
-    
-  exports.onscenedevices = function(params) {
-    params[''] = credentials.txtEmail;
-    params[''] = credentials.txtPassword;
-    params[''] = credentials.p1;
-    var url = "http://www.ayatar.com/ayanet_service.php?SERV=onscenedevices"+ "&" + $.param(params);
-    return $.ajax({url: url, type: 'GET'}); 
-  };
-    
-  exports.sceneDevice = function(params) {
-    params[''] = credentials.txtEmail;
-    params[''] = credentials.txtPassword;
-    params[''] = credentials.p1;
-    var url = "http://www.ayatar.com/ayanet_service.php?SERV=sceneDevice"+ "&" + $.param(params);
-    return $.ajax({url: url, type: 'GET'}); 
-  };
-    
+        /* Data Feeds Function */
+    exports.Scenes = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=scenes"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
+
+    exports.onscenedevices = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=onscenedevices"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
+
+    exports.sceneDevice = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=sceneDevice"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
+     
+    exports.modelparameters = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=modelparameters"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
   return exports;
 })
 )(intel.xdk.services.credentials.LNL,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
+    
+  function getList(path, params) {
+    params = params || {};
+    params.apiKey = credentials.apiKey;
+    var url = baseUrl + path + '.json?' + $.param(params);
+    return $.ajax({url: url, dataType: "json"});
+  }
+
+  function getDetailedInfo(path, params) {
+    params = params || {};
+    params.apiKey = credentials.apiKey;
+    var url = baseUrl + 'movies/' + params.id + path + '.json?';
+    var params_temp = {};
+    for (var prop in params) {
+      if((prop!='id') && Object.prototype.hasOwnProperty.call(params,prop)){
+        params_temp[prop] = params[prop];  
+      }
+    }
+    url = url + $.param(params_temp);
+    return $.ajax({url: url, dataType: "json"});
+  }
+
+  exports.box_office = getList.bind(null, 'lists/movies/box_office');
+  exports.in_theatres = getList.bind(null, 'lists/movies/in_theaters');
+  exports.opening = getList.bind(null, 'lists/movies/opening');
+  exports.upcoming = getList.bind(null, 'lists/movies/upcoming');
+  exports.top_rentals = getList.bind(null, 'lists/dvds/top_rentals');
+  exports.current_releases = getList.bind(null, 'lists/dvds/current_releases');
+  exports.new_releases = getList.bind(null, 'lists/dvds/new_releases');
+  exports.upcomingDVD = getList.bind(null, 'lists/dvds/upcoming');
+  exports.movie_info = getDetailedInfo.bind(null,'');
+  exports.cast_info = getDetailedInfo.bind(null, '/cast');
+  exports.movie_clips = getDetailedInfo.bind(null, '/clips');
+  exports.movie_reviews = getDetailedInfo.bind(null, '/reviews');
+  exports.movie_similar = getDetailedInfo.bind(null, '/similar');
+  exports.movie_alias = getList.bind(null, 'movie_alias');
+  exports.search = getList.bind(null, 'movies');
+  exports.listsDirectory = getList.bind(null, '');
+  exports.movieListsDirectory = getList.bind(null, 'lists/movies');
+  exports.dvdListsDirectory = getList.bind(null, 'lists/dvds');
+
+  return exports;
+}))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.klout = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.klout.com/v2/';
@@ -295,19 +343,6 @@ intel.xdk.services.iodocs_.klout = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.klout,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
-  var exports = {};
-  exports.GET = function (params) {
-    var url = params.URL ;
-    return $.ajax({url: url});
-  };
-  exports.POST = function (params) {
-    var url = params.URL ;
-    return $.ajax({url: url, type : 'POST'});
-  };
-  
-  return exports;
-}))(intel.xdk.services.credentials.sandbox,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.usatoday.com/open/';
@@ -904,52 +939,19 @@ intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.foursquare,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
+intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
   var exports = {};
-  var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
-    
-  function getList(path, params) {
-    params = params || {};
-    params.apiKey = credentials.apiKey;
-    var url = baseUrl + path + '.json?' + $.param(params);
-    return $.ajax({url: url, dataType: "json"});
-  }
-
-  function getDetailedInfo(path, params) {
-    params = params || {};
-    params.apiKey = credentials.apiKey;
-    var url = baseUrl + 'movies/' + params.id + path + '.json?';
-    var params_temp = {};
-    for (var prop in params) {
-      if((prop!='id') && Object.prototype.hasOwnProperty.call(params,prop)){
-        params_temp[prop] = params[prop];  
-      }
-    }
-    url = url + $.param(params_temp);
-    return $.ajax({url: url, dataType: "json"});
-  }
-
-  exports.box_office = getList.bind(null, 'lists/movies/box_office');
-  exports.in_theatres = getList.bind(null, 'lists/movies/in_theaters');
-  exports.opening = getList.bind(null, 'lists/movies/opening');
-  exports.upcoming = getList.bind(null, 'lists/movies/upcoming');
-  exports.top_rentals = getList.bind(null, 'lists/dvds/top_rentals');
-  exports.current_releases = getList.bind(null, 'lists/dvds/current_releases');
-  exports.new_releases = getList.bind(null, 'lists/dvds/new_releases');
-  exports.upcomingDVD = getList.bind(null, 'lists/dvds/upcoming');
-  exports.movie_info = getDetailedInfo.bind(null,'');
-  exports.cast_info = getDetailedInfo.bind(null, '/cast');
-  exports.movie_clips = getDetailedInfo.bind(null, '/clips');
-  exports.movie_reviews = getDetailedInfo.bind(null, '/reviews');
-  exports.movie_similar = getDetailedInfo.bind(null, '/similar');
-  exports.movie_alias = getList.bind(null, 'movie_alias');
-  exports.search = getList.bind(null, 'movies');
-  exports.listsDirectory = getList.bind(null, '');
-  exports.movieListsDirectory = getList.bind(null, 'lists/movies');
-  exports.dvdListsDirectory = getList.bind(null, 'lists/dvds');
-
+  exports.GET = function (params) {
+    var url = params.URL ;
+    return $.ajax({url: url});
+  };
+  exports.POST = function (params) {
+    var url = params.URL ;
+    return $.ajax({url: url, type : 'POST'});
+  };
+  
   return exports;
-}))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.sandbox,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
   var exports = {};
   var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
@@ -2071,74 +2073,42 @@ intel.xdk.services.iodocs_.db_core = ((function (credentials, helpers) {
 
   return exports;
 }))(intel.xdk.services.credentials.db_core,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
+intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
   var exports = {};
     
-function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (var k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
+  function init() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', credentials.apiKey, 'auto');
   }
-  
-  /* Data Feed Function */
-  exports.methodA1 = function (params) {
-    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
-    return $.ajax({url: url});
+    
+  exports.trackPageView = function(params) {
+      init();
+      var d = $.Deferred();
+      
+      if (params.Location) ga('set','location', params.Location);
+      if (params.Page) ga('set','page', params.Page);
+      if (params.Title) ga('set','title', params.Title);
+      ga('send', 'pageview');
+      
+      d.resolve('Pageview sent!');
+      return d.promise();
   };
     
-  function get_jambase_handler(endpoint_uri)
-  {
-      return function(params) {
-        params = jsonCleaner(params);
-        var url = endpoint_uri; 
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-      };
-  }
-    
-  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
-  function get_eventBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/events');
-  }
-  
-  function get_artistBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/artists');
-  }
+    exports.trackEvent = function(params) {
+        init();
+        var d = $.Deferred();
+        if (params.Label) ga('set','eventLabel', params.Label);
+        if (params.Value) ga('set','eventValue', params.Value);
+        ga('send', 'event', params.Category, params.Action);
+        d.resolve('Check your analytics account');
+        return d.promise();
+    };
 
-  function get_venuesBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/venues');
-  }
-  
-  exports.eventById           = get_eventBy_method();
-  exports.eventListByZipcode  = get_eventBy_method()
-  exports.eventListByArtistId = get_eventBy_method();
-  exports.eventListByVenueId  = get_eventBy_method();
-
-  exports.artistsByName       = get_artistBy_method();
-  exports.artistById          = get_artistBy_method();
-  
-  exports.venuesByName        = get_venuesBy_method();
-  exports.venuesByZipcode     = get_venuesBy_method();
-  exports.venueById           = get_venuesBy_method();
-    
   return exports;
-}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   var exports = {};
   var isInit;
@@ -2320,42 +2290,74 @@ intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   };
   return exports;
 }))(intel.xdk.services.credentials.kinvey,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
+intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
   var exports = {};
     
-  function init() {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', credentials.apiKey, 'auto');
+function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (var k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
   }
-    
-  exports.trackPageView = function(params) {
-      init();
-      var d = $.Deferred();
-      
-      if (params.Location) ga('set','location', params.Location);
-      if (params.Page) ga('set','page', params.Page);
-      if (params.Title) ga('set','title', params.Title);
-      ga('send', 'pageview');
-      
-      d.resolve('Pageview sent!');
-      return d.promise();
+  
+  /* Data Feed Function */
+  exports.methodA1 = function (params) {
+    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
+    return $.ajax({url: url});
   };
     
-    exports.trackEvent = function(params) {
-        init();
-        var d = $.Deferred();
-        if (params.Label) ga('set','eventLabel', params.Label);
-        if (params.Value) ga('set','eventValue', params.Value);
-        ga('send', 'event', params.Category, params.Action);
-        d.resolve('Check your analytics account');
-        return d.promise();
-    };
+  function get_jambase_handler(endpoint_uri)
+  {
+      return function(params) {
+        params = jsonCleaner(params);
+        var url = endpoint_uri; 
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+      };
+  }
+    
+  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
+  function get_eventBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/events');
+  }
+  
+  function get_artistBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/artists');
+  }
 
+  function get_venuesBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/venues');
+  }
+  
+  exports.eventById           = get_eventBy_method();
+  exports.eventListByZipcode  = get_eventBy_method()
+  exports.eventListByArtistId = get_eventBy_method();
+  exports.eventListByVenueId  = get_eventBy_method();
+
+  exports.artistsByName       = get_artistBy_method();
+  exports.artistById          = get_artistBy_method();
+  
+  exports.venuesByName        = get_venuesBy_method();
+  exports.venuesByZipcode     = get_venuesBy_method();
+  exports.venueById           = get_venuesBy_method();
+    
   return exports;
-}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2578,135 +2580,6 @@ intel.xdk.services.iodocs_.soundcloud = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.soundcloud,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.Weibo = ((function (credentials, helpers) {
-  var exports = {};
-  
-  function getCachedToken () {
-    if ($.jStorage && $.jStorage.storageAvailable()) {
-      return $.jStorage.get("intel_xdk_services_sina_weibo_access_token_");
-    }
-    return null;
-  }
-  
-  function showError(msg) {
-    alert(msg);
-    return msg;
-  }
-  
-  exports.get_access_token = function(params) {
-    var url = {
-      codeUrl: 'https://api.weibo.com/oauth2/authorize?',
-      tokenUrl: 'https://api.weibo.com/oauth2/access_token?'
-    };
-    var deferred = $.Deferred();
-    
-    var jStorageAvailable = false, keyName, accessToken;
-    if ($.jStorage && $.jStorage.storageAvailable()) {
-      jStorageAvailable = true;
-      keyName = "intel_xdk_services_sina_weibo_access_token_";
-      accessToken = $.jStorage.get(keyName);
-      if (accessToken) {
-        deferred.resolve({access_token: accessToken});
-        return deferred.promise();
-      }
-    }
-    
-    var urlParams = {
-      code: {
-        client_id: credentials.apiKey,
-        redirect_uri: params.redirect_uri,
-        response_type: "code",
-        scope: params.scope,
-        forcelogin: params.forcelogin
-      },
-      token: {
-        client_id: credentials.apiKey,
-        client_secret: credentials.apiSecret,
-        grant_type: 'authorization_code'
-      }
-    };
-    
-    //helper oauth functions return access token. check to see if service uses authentication code or implicit oauth
-    
-    helpers.oauth2AuthCode(url, urlParams)
-    .then(function(access_token){
-      if (jStorageAvailable) {
-        $.jStorage.set(keyName, access_token, {TTL: 24 * 3600 * 1000});
-      }
-      deferred.resolve({ access_token: access_token });
-    })
-    .fail(function(err){
-      deferred.reject(err);
-    });
-    
-    return deferred.promise();
-  };
-  
-  exports.update = function(params) {
-    var filteredParams = {}, d = $.Deferred();
-    for (var k in params) {
-      if (params.hasOwnProperty(k) && params[k]) {
-        filteredParams[k] = params[k];
-      }
-    }
-    
-    var access_token;
-    if (!filteredParams.access_token) {
-      access_token= getCachedToken();
-      if (!access_token) {
-        d.reject(showError("Need access token before making call"));
-        return d.promise();
-      } else {
-        filteredParams.access_token = access_token;
-      }
-    }
-    var url = "https://api.weibo.com/2/statuses/update.json";
-    return $.ajax({
-      url: url,
-      type: 'POST',
-      data: filteredParams
-    });
-  };
-  
-  exports.upload = function(params) {
-    var d = $.Deferred();
-    var access_token;
-    if (!params.access_token) {
-      access_token = getCachedToken();
-      if (!access_token) {
-        d.reject(showError("Need access token before making call"));
-        return d.promise();
-      } else {
-        params.access_token = access_token;
-      }
-    }
-    var url = "https://upload.api.weibo.com/2/statuses/upload.json";
-    var fd;
-
-    if(params.pic == '-')
-    {
-      d.resolve({'status':'ok'});
-      return d.promise();
-    }
-
-    fd = new FormData();
-    for (var i in params) {
-      if (params.hasOwnProperty(i) && params[i]) {
-        fd.append(i, params[i]);
-      }
-    }
-
-    return $.ajax({
-      url: url,
-      type: "POST",
-      data: fd,
-      processData: false,  // tell jQuery not to process the data
-      contentType: false   // tell jQuery not to set contentType
-    });
-  };
-  
-  return exports;
-}))(intel.xdk.services.credentials.Weibo,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
     var exports = {};
     exports.getIPLocation = function (params) {
@@ -2844,6 +2717,135 @@ intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
 
     return exports;
 }))(intel.xdk.services.credentials.BaiduMap,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.Weibo = ((function (credentials, helpers) {
+  var exports = {};
+  
+  function getCachedToken () {
+    if ($.jStorage && $.jStorage.storageAvailable()) {
+      return $.jStorage.get("intel_xdk_services_sina_weibo_access_token_");
+    }
+    return null;
+  }
+  
+  function showError(msg) {
+    alert(msg);
+    return msg;
+  }
+  
+  exports.get_access_token = function(params) {
+    var url = {
+      codeUrl: 'https://api.weibo.com/oauth2/authorize?',
+      tokenUrl: 'https://api.weibo.com/oauth2/access_token?'
+    };
+    var deferred = $.Deferred();
+    
+    var jStorageAvailable = false, keyName, accessToken;
+    if ($.jStorage && $.jStorage.storageAvailable()) {
+      jStorageAvailable = true;
+      keyName = "intel_xdk_services_sina_weibo_access_token_";
+      accessToken = $.jStorage.get(keyName);
+      if (accessToken) {
+        deferred.resolve({access_token: accessToken});
+        return deferred.promise();
+      }
+    }
+    
+    var urlParams = {
+      code: {
+        client_id: credentials.apiKey,
+        redirect_uri: params.redirect_uri,
+        response_type: "code",
+        scope: params.scope,
+        forcelogin: params.forcelogin
+      },
+      token: {
+        client_id: credentials.apiKey,
+        client_secret: credentials.apiSecret,
+        grant_type: 'authorization_code'
+      }
+    };
+    
+    //helper oauth functions return access token. check to see if service uses authentication code or implicit oauth
+    
+    helpers.oauth2AuthCode(url, urlParams)
+    .then(function(access_token){
+      if (jStorageAvailable) {
+        $.jStorage.set(keyName, access_token, {TTL: 24 * 3600 * 1000});
+      }
+      deferred.resolve({ access_token: access_token });
+    })
+    .fail(function(err){
+      deferred.reject(err);
+    });
+    
+    return deferred.promise();
+  };
+  
+  exports.update = function(params) {
+    var filteredParams = {}, d = $.Deferred();
+    for (var k in params) {
+      if (params.hasOwnProperty(k) && params[k]) {
+        filteredParams[k] = params[k];
+      }
+    }
+    
+    var access_token;
+    if (!filteredParams.access_token) {
+      access_token= getCachedToken();
+      if (!access_token) {
+        d.reject(showError("Need access token before making call"));
+        return d.promise();
+      } else {
+        filteredParams.access_token = access_token;
+      }
+    }
+    var url = "https://api.weibo.com/2/statuses/update.json";
+    return $.ajax({
+      url: url,
+      type: 'POST',
+      data: filteredParams
+    });
+  };
+  
+  exports.upload = function(params) {
+    var d = $.Deferred();
+    var access_token;
+    if (!params.access_token) {
+      access_token = getCachedToken();
+      if (!access_token) {
+        d.reject(showError("Need access token before making call"));
+        return d.promise();
+      } else {
+        params.access_token = access_token;
+      }
+    }
+    var url = "https://upload.api.weibo.com/2/statuses/upload.json";
+    var fd;
+
+    if(params.pic == '-')
+    {
+      d.resolve({'status':'ok'});
+      return d.promise();
+    }
+
+    fd = new FormData();
+    for (var i in params) {
+      if (params.hasOwnProperty(i) && params[i]) {
+        fd.append(i, params[i]);
+      }
+    }
+
+    return $.ajax({
+      url: url,
+      type: "POST",
+      data: fd,
+      processData: false,  // tell jQuery not to process the data
+      contentType: false   // tell jQuery not to set contentType
+    });
+  };
+  
+  return exports;
+}))(intel.xdk.services.credentials.Weibo,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.mapquest = ((function (credentials, helpers) {
   'use strict';
 
@@ -2875,6 +2877,88 @@ intel.xdk.services.iodocs_.mapquest = ((function (credentials, helpers) {
 
 })
 )(intel.xdk.services.credentials.mapquest,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.youtube = ((function (credentials, helpers) {
+  var exports = {};
+  var aToken;
+
+  var baseURL = 'https://www.googleapis.com/youtube/v3';
+  function getList(path, params){
+    params = params || {};
+    var paramsExpanded = jsonCleaner(params);
+    url = baseURL + '/' + path + '?' + $.param(paramsExpanded) + '&key=' + credentials.apiKey;
+    return $.ajax({url: url});
+  };
+    /* authentication */
+  function authenticate(params) {
+    if (aToken) {
+      var d = $.Deferred();
+      d.resolve('Already authenticated');
+      return d.promise();
+    }
+    var url = {codeUrl: 'https://accounts.google.com/o/oauth2/auth?',
+               tokenUrl: 'https://accounts.google.com/o/oauth2/token?'};
+    var urlParams = {code: {
+                        client_id: params.client_id,
+                        redirect_uri: params.redirect_uri,
+                        response_type: params.response_type,
+                        scope: params.scope_list,
+                        access_type : 'offline'
+                     },
+                     token: {
+                        client_secret: credentials.apiSecret,
+                        grant_type: 'authorization_code'
+                     }
+                    };
+    return helpers.oauth2AuthCode(url, urlParams)
+    .then(function(token){
+      aToken = token;
+      return token;
+    })
+    .fail(function(err){
+      alert(err.responseText);
+    });
+  };
+  function auth_post(func, params) {
+    var authParams = {} //TODO
+    return exports.authenticate(authParams)
+    .then(function (youtube) {
+      var paramIn = 'id=' + params.id + ',rating=' + params.rating;
+      return youtube.videos().rate(paramIn);
+    })
+    .fail(function(err){
+      alert(err.responseText);
+    })
+
+  }
+
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+  
+  exports.authenticate = authenticate.bind(null);
+  exports.rateVideos = auth_post.bind(null,'rateVideos');
+  exports.listActivities = getList.bind(null,'activities');
+  exports.listGuideCategories = getList.bind(null,'guideCategories');
+  exports.listPlaylistItems = getList.bind(null,'playlistItems');
+  exports.listPlaylists = getList.bind(null,'playlists');
+  exports.listSearch = getList.bind(null,'search');
+  exports.listVideos = getList.bind(null,'videos');
+  return exports;
+}))(intel.xdk.services.credentials.youtube,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.amazon_product_search = ((function (credentials, helpers) {
   var exports = {};
     
@@ -3020,88 +3104,6 @@ parameters.push("AssociateTag=" + AssociateTag);
   
   return exports;
 }))(intel.xdk.services.credentials.amazon_product_search,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.youtube = ((function (credentials, helpers) {
-  var exports = {};
-  var aToken;
-
-  var baseURL = 'https://www.googleapis.com/youtube/v3';
-  function getList(path, params){
-    params = params || {};
-    var paramsExpanded = jsonCleaner(params);
-    url = baseURL + '/' + path + '?' + $.param(paramsExpanded) + '&key=' + credentials.apiKey;
-    return $.ajax({url: url});
-  };
-    /* authentication */
-  function authenticate(params) {
-    if (aToken) {
-      var d = $.Deferred();
-      d.resolve('Already authenticated');
-      return d.promise();
-    }
-    var url = {codeUrl: 'https://accounts.google.com/o/oauth2/auth?',
-               tokenUrl: 'https://accounts.google.com/o/oauth2/token?'};
-    var urlParams = {code: {
-                        client_id: params.client_id,
-                        redirect_uri: params.redirect_uri,
-                        response_type: params.response_type,
-                        scope: params.scope_list,
-                        access_type : 'offline'
-                     },
-                     token: {
-                        client_secret: credentials.apiSecret,
-                        grant_type: 'authorization_code'
-                     }
-                    };
-    return helpers.oauth2AuthCode(url, urlParams)
-    .then(function(token){
-      aToken = token;
-      return token;
-    })
-    .fail(function(err){
-      alert(err.responseText);
-    });
-  };
-  function auth_post(func, params) {
-    var authParams = {} //TODO
-    return exports.authenticate(authParams)
-    .then(function (youtube) {
-      var paramIn = 'id=' + params.id + ',rating=' + params.rating;
-      return youtube.videos().rate(paramIn);
-    })
-    .fail(function(err){
-      alert(err.responseText);
-    })
-
-  }
-
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  exports.authenticate = authenticate.bind(null);
-  exports.rateVideos = auth_post.bind(null,'rateVideos');
-  exports.listActivities = getList.bind(null,'activities');
-  exports.listGuideCategories = getList.bind(null,'guideCategories');
-  exports.listPlaylistItems = getList.bind(null,'playlistItems');
-  exports.listPlaylists = getList.bind(null,'playlists');
-  exports.listSearch = getList.bind(null,'search');
-  exports.listVideos = getList.bind(null,'videos');
-  return exports;
-}))(intel.xdk.services.credentials.youtube,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.bing_search = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3145,6 +3147,43 @@ intel.xdk.services.iodocs_.bing_search = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.bing_search,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
+  var exports = {};
+  
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+  
+  var baseUrl = 'https://openapi.etsy.com/v2/';
+  
+  function getEtsyData(path, params){
+    params = jsonCleaner(params);
+    var url = baseUrl + path + '?api_key=' + credentials.apiKey + "&" + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.listingSearch = getEtsyData.bind('null', 'listings/active');
+  exports.listingTrending = getEtsyData.bind('null', 'listings/trending');
+  exports.shopSearch = getEtsyData.bind('null', 'shops');
+  exports.treasurySearch = getEtsyData.bind('null', 'treasuries');
+  exports.userSearch = getEtsyData.bind('null', 'users');
+  
+  return exports;
+}))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3209,43 +3248,6 @@ intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.EventBrite,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
-  var exports = {};
-  
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  var baseUrl = 'https://openapi.etsy.com/v2/';
-  
-  function getEtsyData(path, params){
-    params = jsonCleaner(params);
-    var url = baseUrl + path + '?api_key=' + credentials.apiKey + "&" + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.listingSearch = getEtsyData.bind('null', 'listings/active');
-  exports.listingTrending = getEtsyData.bind('null', 'listings/trending');
-  exports.shopSearch = getEtsyData.bind('null', 'shops');
-  exports.treasurySearch = getEtsyData.bind('null', 'treasuries');
-  exports.userSearch = getEtsyData.bind('null', 'users');
-  
-  return exports;
-}))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
   var exports = {};
     
@@ -3850,40 +3852,6 @@ intel.xdk.services.iodocs_.UPS = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.UPS,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.centralIndex = ((function (credentials, helpers) {
-  var exports = {};
-  
-  var baseUrl = 'http://api.centralindex.com';
-  
-  function getCentralIndexData(type, path, params) {
-    alert(credentials.apiKey);
-    var url = baseUrl + path + '?api_key=' + credentials.apiKey + $.param(params);
-    return $.ajax({
-      type: type,
-      url: url
-    });
-  }
-
-  exports.advertiserUpdated =  getCentralIndexData.bind(null, 'GET', '/v1/advertiser/updated');
-  exports.autocompleteCategory = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/category');
-  exports.autocompleteKeyword = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/keyword');
-  exports.autocompleteLocation = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/location');
-  exports.entity = getCentralIndexData.bind(null, 'GET', '/v1/entity');
-  exports.entityAdvertisers = getCentralIndexData.bind(null, 'GET', '/v1/entity/advertisers');
-  exports.entitySupplier = getCentralIndexData.bind(null, 'GET', '/v1/entity/by_supplier_id');
-  exports.entitySearchKeywordNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/keyword/bynearest');
-  exports.entitySearchWhat = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what');
-  exports.entitySeatchWhatLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
-  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/byboundingbox');
-  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bynearest');
-  exports.entitySearchWho = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
-  exports.entitySearchWhoLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bylocation');
-  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/byboundingbox');
-  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bynearest');
-  exports.locationContext = getCentralIndexData.bind(null, 'GET', '/v1/location/context');
-
-  return exports;
-}))(intel.xdk.services.credentials.centralIndex,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.github = ((function (credentials, helpers) {
   var exports = {};
   /* OAuth Functions */
@@ -4171,6 +4139,40 @@ intel.xdk.services.iodocs_.github = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.github,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.centralIndex = ((function (credentials, helpers) {
+  var exports = {};
+  
+  var baseUrl = 'http://api.centralindex.com';
+  
+  function getCentralIndexData(type, path, params) {
+    alert(credentials.apiKey);
+    var url = baseUrl + path + '?api_key=' + credentials.apiKey + $.param(params);
+    return $.ajax({
+      type: type,
+      url: url
+    });
+  }
+
+  exports.advertiserUpdated =  getCentralIndexData.bind(null, 'GET', '/v1/advertiser/updated');
+  exports.autocompleteCategory = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/category');
+  exports.autocompleteKeyword = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/keyword');
+  exports.autocompleteLocation = getCentralIndexData.bind(null, 'GET', '/v1/autocomplete/location');
+  exports.entity = getCentralIndexData.bind(null, 'GET', '/v1/entity');
+  exports.entityAdvertisers = getCentralIndexData.bind(null, 'GET', '/v1/entity/advertisers');
+  exports.entitySupplier = getCentralIndexData.bind(null, 'GET', '/v1/entity/by_supplier_id');
+  exports.entitySearchKeywordNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/keyword/bynearest');
+  exports.entitySearchWhat = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what');
+  exports.entitySeatchWhatLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
+  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/byboundingbox');
+  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bynearest');
+  exports.entitySearchWho = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/what/bylocation');
+  exports.entitySearchWhoLocation = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bylocation');
+  exports.entitySearchWhatBoundingBox = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/byboundingbox');
+  exports.entitySearchWhatNearest = getCentralIndexData.bind(null, 'GET', '/v1/entity/search/who/bynearest');
+  exports.locationContext = getCentralIndexData.bind(null, 'GET', '/v1/location/context');
+
+  return exports;
+}))(intel.xdk.services.credentials.centralIndex,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.edmunds = ((function (credentials, helpers) {
   var exports = {};
     
@@ -8871,3 +8873,6 @@ intel.xdk.services.LNLonscenedevices=intel.xdk.services.iodocs_.bindCommon.bind(
 /*xdk-auto-gen:service-methods:LNLsceneDevice:start:348011233a60c7add3fc75414bc90b7b*/
 intel.xdk.services.LNLsceneDevice=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLsceneDevice",intel.xdk.services.iodocs_.LNL.sceneDevice,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"17",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLsceneDevice:end*/
+/*xdk-auto-gen:service-methods:LNLmodelparameters:start:2ee2f13aee67972c8feb1f2dfab66ae3*/
+intel.xdk.services.LNLmodelparameters=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLmodelparameters",intel.xdk.services.iodocs_.LNL.modelparameters,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"3",__proto__:{}});
+/*xdk-auto-gen:service-methods:LNLmodelparameters:end*/

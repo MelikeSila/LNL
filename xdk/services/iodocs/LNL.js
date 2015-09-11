@@ -24,6 +24,13 @@
         var url = "http://www.ayatar.com/ayanet_service.php?SERV=sceneDevice"+ "&" + $.param(params);
         return $.ajax({url: url, type: 'GET'}); 
     };
-    
+     
+    exports.modelparameters = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=modelparameters"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
   return exports;
 })
