@@ -1,4 +1,4 @@
-/*xdk-auto-gen:service-methods:common:start:bd98b8710a1f5019b336285cad7124bc*/
+/*xdk-auto-gen:service-methods:common:start:7cfe8fa164b9540280a1ee07541f8720*/
 
 var intel;
 if (!intel) intel = {};
@@ -288,6 +288,42 @@ intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.usatoday,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.klout = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'http://api.klout.com/v2/';
+
+  function getId(path, params) {
+    params = params || {};
+    var substring = '/' + params.Id + '?';
+    if(params.screenName) {
+      substring = '?' + 'screenName=' + params.screenName + '&';
+    }
+    if(params.KId) {
+      substring = '/' + params.KId + '/tw?';
+    }
+    var url = baseUrl + 'identity.json/' + path + substring + 'key=' + credentials.apiKey;
+    return $.ajax({url: url});
+  }
+
+  function getUser(path, params) {
+    params = params || {};
+    if (path) {path = '/' + path; }
+    var url = baseUrl + 'user.json/' + params.kloutId +  path + '?key=' + credentials.apiKey;
+    return $.ajax({url: url});
+  }
+
+  exports.getIdByTwitterId = getId.bind(null, 'tw');
+  exports.getIdByGoogle = getId.bind(null, 'gp');
+  exports.getIdByInstagram = getId.bind(null, 'ig');
+  exports.getIdByTwitterName = getId.bind(null, 'twitter');
+  exports.getTwitterIdByKloutId = getId.bind(null, 'klout');
+  exports.showUser = getUser.bind(null, '');
+  exports.Score = getUser.bind(null, 'score');
+  exports.Topics = getUser.bind(null, 'topics');
+  exports.Influence = getUser.bind(null, 'influence');
+
+  return exports;
+}))(intel.xdk.services.credentials.klout,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
@@ -334,42 +370,6 @@ intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.klout = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'http://api.klout.com/v2/';
-
-  function getId(path, params) {
-    params = params || {};
-    var substring = '/' + params.Id + '?';
-    if(params.screenName) {
-      substring = '?' + 'screenName=' + params.screenName + '&';
-    }
-    if(params.KId) {
-      substring = '/' + params.KId + '/tw?';
-    }
-    var url = baseUrl + 'identity.json/' + path + substring + 'key=' + credentials.apiKey;
-    return $.ajax({url: url});
-  }
-
-  function getUser(path, params) {
-    params = params || {};
-    if (path) {path = '/' + path; }
-    var url = baseUrl + 'user.json/' + params.kloutId +  path + '?key=' + credentials.apiKey;
-    return $.ajax({url: url});
-  }
-
-  exports.getIdByTwitterId = getId.bind(null, 'tw');
-  exports.getIdByGoogle = getId.bind(null, 'gp');
-  exports.getIdByInstagram = getId.bind(null, 'ig');
-  exports.getIdByTwitterName = getId.bind(null, 'twitter');
-  exports.getTwitterIdByKloutId = getId.bind(null, 'klout');
-  exports.showUser = getUser.bind(null, '');
-  exports.Score = getUser.bind(null, 'score');
-  exports.Topics = getUser.bind(null, 'topics');
-  exports.Influence = getUser.bind(null, 'influence');
-
-  return exports;
-}))(intel.xdk.services.credentials.klout,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
   var exports = {};
   exports.GET = function (params) {
@@ -961,6 +961,23 @@ intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.foursquare,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
+
+  function getPlaceData(path, params) {
+    params = params || {};
+    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
+  exports.textSearch = getPlaceData.bind(null, 'textsearch');
+  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
+  exports.placeDetails = getPlaceData.bind(null, 'details');
+
+  return exports;
+}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.wunderground = ((function (credentials, helpers) {
   'use strict';
 
@@ -1053,23 +1070,6 @@ intel.xdk.services.iodocs_.spotify = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.spotify,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
-
-  function getPlaceData(path, params) {
-    params = params || {};
-    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
-  exports.textSearch = getPlaceData.bind(null, 'textsearch');
-  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
-  exports.placeDetails = getPlaceData.bind(null, 'details');
-
-  return exports;
-}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.itunes = ((function (credentials, helpers) {
   'use strict';
 
@@ -1704,6 +1704,42 @@ intel.xdk.services.iodocs_.instagram = ((function (credentials, helpers) {
 
   return exports;
 }))(intel.xdk.services.credentials.instagram,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
+  var exports = {};
+    
+  function init() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', credentials.apiKey, 'auto');
+  }
+    
+  exports.trackPageView = function(params) {
+      init();
+      var d = $.Deferred();
+      
+      if (params.Location) ga('set','location', params.Location);
+      if (params.Page) ga('set','page', params.Page);
+      if (params.Title) ga('set','title', params.Title);
+      ga('send', 'pageview');
+      
+      d.resolve('Pageview sent!');
+      return d.promise();
+  };
+    
+    exports.trackEvent = function(params) {
+        init();
+        var d = $.Deferred();
+        if (params.Label) ga('set','eventLabel', params.Label);
+        if (params.Value) ga('set','eventValue', params.Value);
+        ga('send', 'event', params.Category, params.Action);
+        d.resolve('Check your analytics account');
+        return d.promise();
+    };
+
+  return exports;
+}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.db_core = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2082,42 +2118,177 @@ intel.xdk.services.iodocs_.db_core = ((function (credentials, helpers) {
 
   return exports;
 }))(intel.xdk.services.credentials.db_core,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
+intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
   var exports = {};
-    
-  function init() {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', credentials.apiKey, 'auto');
+  
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (var k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
   }
-    
-  exports.trackPageView = function(params) {
-      init();
-      var d = $.Deferred();
-      
-      if (params.Location) ga('set','location', params.Location);
-      if (params.Page) ga('set','page', params.Page);
-      if (params.Title) ga('set','title', params.Title);
-      ga('send', 'pageview');
-      
-      d.resolve('Pageview sent!');
-      return d.promise();
+  
+  
+
+  //a helper function
+  exports.dateToISO8601 = function(d)
+  {
+      return d.toISOString().match(/[^:]*:[^:]*/)[0] + 'Z';
   };
     
-    exports.trackEvent = function(params) {
-        init();
-        var d = $.Deferred();
-        if (params.Label) ga('set','eventLabel', params.Label);
-        if (params.Value) ga('set','eventValue', params.Value);
-        ga('send', 'event', params.Category, params.Action);
-        d.resolve('Check your analytics account');
-        return d.promise();
-    };
+  get_tms_iso8601_method = function(endpoint_uri)
+  {
+      return function(params)
+      {
+        params = jsonCleaner(params);
+        var url = endpoint_uri;
+        if(!params.startDateTime) //oddly, startDateTime is required.  
+        {
+            var now = new Date();
+            params.startDateTime = exports.dateToISO8601(now);
+        }
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+      };
+  };
+    
+  exports.movieShowings = function(params) {
+        params = jsonCleaner(params);
+        var url = 'http://data.tmsapi.com/v1/movies/showings';
+        if(!params.startDate) //oddly, startDate is required.  
+        {
+            var now = new Date();
+            var now_str = now.toISOString();
+            params.startDate = now_str.match(/[^T]*/)[0];
+        }
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+  };
+    
+  exports.newShowAirings = get_tms_iso8601_method('http://data.tmsapi.com/v1/programs/newShowAirings');
+    
+  exports.movieAirings = get_tms_iso8601_method('http://data.tmsapi.com/v1/movies/airings');
+    
 
+  exports.sportEventAirings = function(params)
+  {
+    params = jsonCleaner(params);
+    var url = 'http://data.tmsapi.com/v1/sports/';
+    url += params.sportsId;
+    delete params.sportsId;
+    url += '/events/airings';
+      
+    if(!params.startDateTime) //oddly, startDateTime is required.  
+    {
+        var now = new Date();
+        params.startDateTime = exports.dateToISO8601(now);
+    }
+    params.api_key = credentials.apiKey;
+    url = url + '?' + $.param(params);
+    return $.ajax({url: url, type: 'GET'});
+  };
+
+    /*
+  exports.newShowAirings = function(params) {
+        params = jsonCleaner(params);
+        var url = 'http://data.tmsapi.com/v1/programs/newShowAirings';
+        if(!params.startDateTime) //oddly, startDateTime is required.  
+        {
+            var now = new Date();
+            params.startDateTime = exports.dateToISO8601(now);
+        }
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+  };
+    */
+  
+  
+  
+  
   return exports;
-}))(intel.xdk.services.credentials.google_analytics,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.tms,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
+  var exports = {};
+    
+function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (var k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+  
+  /* Data Feed Function */
+  exports.methodA1 = function (params) {
+    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
+    return $.ajax({url: url});
+  };
+    
+  function get_jambase_handler(endpoint_uri)
+  {
+      return function(params) {
+        params = jsonCleaner(params);
+        var url = endpoint_uri; 
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+      };
+  }
+    
+  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
+  function get_eventBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/events');
+  }
+  
+  function get_artistBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/artists');
+  }
+
+  function get_venuesBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/venues');
+  }
+  
+  exports.eventById           = get_eventBy_method();
+  exports.eventListByZipcode  = get_eventBy_method()
+  exports.eventListByArtistId = get_eventBy_method();
+  exports.eventListByVenueId  = get_eventBy_method();
+
+  exports.artistsByName       = get_artistBy_method();
+  exports.artistById          = get_artistBy_method();
+  
+  exports.venuesByName        = get_venuesBy_method();
+  exports.venuesByZipcode     = get_venuesBy_method();
+  exports.venueById           = get_venuesBy_method();
+    
+  return exports;
+}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   var exports = {};
   var isInit;
@@ -2299,177 +2470,6 @@ intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   };
   return exports;
 }))(intel.xdk.services.credentials.kinvey,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
-  var exports = {};
-  
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (var k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  
-
-  //a helper function
-  exports.dateToISO8601 = function(d)
-  {
-      return d.toISOString().match(/[^:]*:[^:]*/)[0] + 'Z';
-  };
-    
-  get_tms_iso8601_method = function(endpoint_uri)
-  {
-      return function(params)
-      {
-        params = jsonCleaner(params);
-        var url = endpoint_uri;
-        if(!params.startDateTime) //oddly, startDateTime is required.  
-        {
-            var now = new Date();
-            params.startDateTime = exports.dateToISO8601(now);
-        }
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-      };
-  };
-    
-  exports.movieShowings = function(params) {
-        params = jsonCleaner(params);
-        var url = 'http://data.tmsapi.com/v1/movies/showings';
-        if(!params.startDate) //oddly, startDate is required.  
-        {
-            var now = new Date();
-            var now_str = now.toISOString();
-            params.startDate = now_str.match(/[^T]*/)[0];
-        }
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-  };
-    
-  exports.newShowAirings = get_tms_iso8601_method('http://data.tmsapi.com/v1/programs/newShowAirings');
-    
-  exports.movieAirings = get_tms_iso8601_method('http://data.tmsapi.com/v1/movies/airings');
-    
-
-  exports.sportEventAirings = function(params)
-  {
-    params = jsonCleaner(params);
-    var url = 'http://data.tmsapi.com/v1/sports/';
-    url += params.sportsId;
-    delete params.sportsId;
-    url += '/events/airings';
-      
-    if(!params.startDateTime) //oddly, startDateTime is required.  
-    {
-        var now = new Date();
-        params.startDateTime = exports.dateToISO8601(now);
-    }
-    params.api_key = credentials.apiKey;
-    url = url + '?' + $.param(params);
-    return $.ajax({url: url, type: 'GET'});
-  };
-
-    /*
-  exports.newShowAirings = function(params) {
-        params = jsonCleaner(params);
-        var url = 'http://data.tmsapi.com/v1/programs/newShowAirings';
-        if(!params.startDateTime) //oddly, startDateTime is required.  
-        {
-            var now = new Date();
-            params.startDateTime = exports.dateToISO8601(now);
-        }
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-  };
-    */
-  
-  
-  
-  
-  return exports;
-}))(intel.xdk.services.credentials.tms,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
-  var exports = {};
-    
-function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (var k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  /* Data Feed Function */
-  exports.methodA1 = function (params) {
-    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
-    return $.ajax({url: url});
-  };
-    
-  function get_jambase_handler(endpoint_uri)
-  {
-      return function(params) {
-        params = jsonCleaner(params);
-        var url = endpoint_uri; 
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-      };
-  }
-    
-  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
-  function get_eventBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/events');
-  }
-  
-  function get_artistBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/artists');
-  }
-
-  function get_venuesBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/venues');
-  }
-  
-  exports.eventById           = get_eventBy_method();
-  exports.eventListByZipcode  = get_eventBy_method()
-  exports.eventListByArtistId = get_eventBy_method();
-  exports.eventListByVenueId  = get_eventBy_method();
-
-  exports.artistsByName       = get_artistBy_method();
-  exports.artistById          = get_artistBy_method();
-  
-  exports.venuesByName        = get_venuesBy_method();
-  exports.venuesByZipcode     = get_venuesBy_method();
-  exports.venueById           = get_venuesBy_method();
-    
-  return exports;
-}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.soundcloud = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2718,37 +2718,6 @@ intel.xdk.services.iodocs_.Weibo = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.Weibo,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.mapquest = ((function (credentials, helpers) {
-  'use strict';
-
-  var MAPQUEST = 'https://www.mapquestapi.com/traffic/v2/';
-
-  return {
-    incidents: function(params) {
-      var url = MAPQUEST + 'incidents?inFormat=kvp&key=' + credentials.apiKey;
-      url += '&boundingBox=' + params.boundingBox;
-      url += '&incidents=';
-
-      var incidents = {
-        incidents: params.incidents,
-        construction: params.construction,
-        event: params.event,
-        congestion: params.congestion
-      };
-
-      url += Object.keys(incidents).filter(function(incident) {
-        return incidents[incident] === 'true';
-      }).join(',');
-
-      return $.ajax({
-        type: 'GET',
-        url:  url
-      });
-    }
-  };
-
-})
-)(intel.xdk.services.credentials.mapquest,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
     var exports = {};
     exports.getIPLocation = function (params) {
@@ -2886,6 +2855,37 @@ intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
 
     return exports;
 }))(intel.xdk.services.credentials.BaiduMap,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.mapquest = ((function (credentials, helpers) {
+  'use strict';
+
+  var MAPQUEST = 'https://www.mapquestapi.com/traffic/v2/';
+
+  return {
+    incidents: function(params) {
+      var url = MAPQUEST + 'incidents?inFormat=kvp&key=' + credentials.apiKey;
+      url += '&boundingBox=' + params.boundingBox;
+      url += '&incidents=';
+
+      var incidents = {
+        incidents: params.incidents,
+        construction: params.construction,
+        event: params.event,
+        congestion: params.congestion
+      };
+
+      url += Object.keys(incidents).filter(function(incident) {
+        return incidents[incident] === 'true';
+      }).join(',');
+
+      return $.ajax({
+        type: 'GET',
+        url:  url
+      });
+    }
+  };
+
+})
+)(intel.xdk.services.credentials.mapquest,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.amazon_product_search = ((function (credentials, helpers) {
   var exports = {};
     
@@ -3193,61 +3193,6 @@ intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
   
   return exports;
 }))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
-  var exports = {};
-    
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-    
-  exports.stats = function (params) {
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'stats';
-    return $.ajax({url: url});
-  };
-
-  exports.cities = function (params) {
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'cities';
-    return $.ajax({url: url});
-  };
-    
-  exports.restaurants = function (params) {
-    params = jsonCleaner(params);
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'restaurants';
-    if (params) url = url + '?' + $.param(params);
-    return $.ajax({url: url});
-  };
-    
-  exports.restaurant_by_id = function (params) {
-    //params = jsonCleaner(params);
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'restaurants/' + params.id;
-    //if (params) url = url + '?' + $.param(params);
-    return $.ajax({url: url});
-  };
-  
- 
-  
-  
-  
-  return exports;
-}))(intel.xdk.services.credentials.OpenTable,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3324,6 +3269,61 @@ intel.xdk.services.iodocs_.RSS = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.RSS,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
+  var exports = {};
+    
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+    
+  exports.stats = function (params) {
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'stats';
+    return $.ajax({url: url});
+  };
+
+  exports.cities = function (params) {
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'cities';
+    return $.ajax({url: url});
+  };
+    
+  exports.restaurants = function (params) {
+    params = jsonCleaner(params);
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'restaurants';
+    if (params) url = url + '?' + $.param(params);
+    return $.ajax({url: url});
+  };
+    
+  exports.restaurant_by_id = function (params) {
+    //params = jsonCleaner(params);
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'restaurants/' + params.id;
+    //if (params) url = url + '?' + $.param(params);
+    return $.ajax({url: url});
+  };
+  
+ 
+  
+  
+  
+  return exports;
+}))(intel.xdk.services.credentials.OpenTable,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.UPS = ((function (credentials, helpers) {
   var exports = {};
     
@@ -13347,3 +13347,6 @@ intel.xdk.services.LNLmodelparameters=intel.xdk.services.iodocs_.bindCommon.bind
 /*xdk-auto-gen:service-methods:LNLdatatimestamp:start:3629a9c65adc577dfe8ea8895b27da8d*/
 intel.xdk.services.LNLdatatimestamp=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLdatatimestamp",intel.xdk.services.iodocs_.LNL.datatimestamp,{txtEmail:"",txtPassword:"",p1:"4",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLdatatimestamp:end*/
+/*xdk-auto-gen:service-methods:LNLdatatimestampss:start:2d2d2d8cbb4afb9ae197df2f90228b79*/
+intel.xdk.services.LNLdatatimestampss=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLdatatimestampss",intel.xdk.services.iodocs_.LNL.datatimestamp,{txtEmail:"",txtPassword:"",p1:"2_11_0",__proto__:{}});
+/*xdk-auto-gen:service-methods:LNLdatatimestampss:end*/

@@ -285,8 +285,7 @@
                                         <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="._device" onclick="call_modelparameters()"><a>{{_default_name}}</a>
                                         </li>
 
-                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" id="device_model_id" data-rpath="._device">{{_device_model._id}}
-                                        </li>
+                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" id="device_model_id" data-rpath="._device">{{_device_model._id}}</li>
 
                                     </ul><span class="uib_shim"></span>
                                 </div>
@@ -300,11 +299,15 @@
                                 <div class="widget-container content-area vertical-col">
 
                                     <ul class="list widget uib_w_84 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_85 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="multiple" data-rpath="[]"><a>{{_parameter._description}}</a>
+                                        <li class="widget uib_w_85 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="multiple" data-rpath="[]" onclick="call_datatimestamp()"><a>{{_parameter._description}}</a>
                                         </li>
 
-                                        <li class="widget uib_w_87 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLdatatimestamp" data-sc="single" data-rpath="(base)"><a>{{4._value}}</a>
+                                        <li class="widget uib_w_87 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLdatatimestampss" data-sc="single" data-rpath=".2_11_0"><a>{{_timestamp}}</a>
                                         </li>
+                                    </ul>
+                                    <ul class="list widget uib_w_88 d-margins" data-uib="app_framework/listview" data-ver="1">
+                                        <li class="widget uib_w_89 template" data-uib="app_framework/listitem" data-ver="1" data-sm="-- .uib_w_85" data-rpath="._parameter" data-sc="single" id="parameter_id">{{_id}}</li>
+
                                     </ul><span class="uib_shim"></span>
                                 </div>
                             </div>
@@ -324,6 +327,7 @@
                 // Validate username and password
                 //sadece id sini kullanmak istediğim bir listi hide yaptım.
                 document.getElementById("device_model_id").style.display = 'none'; //block
+                document.getElementById("parameter_id").style.display = 'none'; //block
                 if (formUsername === null || formUsername === "") {
                     alert("Username must be filled out");
                     alert("Login failed!!!");
@@ -416,6 +420,27 @@
                             activate_subpage("#uib_page_9");
 //                              modelparameter
                             intel.xdk.services.LNLmodelparameters({txtEmail:formUsername , txtPassword:formPassword, p1:mafy}).then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+                            return;                      
+                        }
+                    });
+            }
+        </script>
+
+        <script>
+            //id si alınan bölgenin device'ı var mı diye kontrol ediyor ve device yoksa alert ediyor. device varsa device'ı ekranda seçmesi için gösteriyor.
+            function call_datatimestamp(){
+                var MINLENGTH = 3;
+                var formUsername = document.forms.login.e_posta.value;
+                var formPassword = document.forms.login.password.value;
+                var bhmafy = document.getElementById("device_model_id").innerHTML + "_" + document.getElementById("parameter_id").innerHTML + "_" + "0";
+                    $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=datatimestamp&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + bhmafy, function(jsondata){
+                        if(jsondata == null){
+                            alert("Cihaz hakkında bilgi bulunamadı!");
+                        }else{
+//                              modelparameter
+                            intel.xdk.services.LNLdatatimestamp({txtEmail:formUsername , txtPassword:formPassword, p1:bhmafy}).then(function(data){
                                 console.log("here is the data from the service", data);
                             })
                             return;                      
