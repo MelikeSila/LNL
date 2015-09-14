@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "appDesigner",
       "projectGuid": "6f83d6cc-61a8-444f-8779-405631fdc413",
-      "lastModifiedDate": 1441979419644,
+      "lastModifiedDate": 1442230744310,
       "creationDate": 1438649412082
     },
     "XDK-app-designer": "true",
@@ -385,18 +385,34 @@
         "serviceName": "LNL",
         "resultType": "array",
         "selectedPaths": {
-          "[0]._parameter._id": "string",
-          "[0]._parameter._type_id": "string",
-          "[0]._parameter._name": "string",
-          "[0]._parameter._description": "string",
-          "[0]._parameter._unit": "string",
-          "[0]._model._id": "string",
-          "[0]._model._model_number": "string",
-          "[0]._model._name": "string",
+          "[0]._subId": "string",
           "[0]._model._description": "string",
-          "[0]._subId": "string"
+          "[0]._model._name": "string",
+          "[0]._model._model_number": "string",
+          "[0]._model._id": "string",
+          "[0]._parameter._unit": "string",
+          "[0]._parameter._type_id": "string",
+          "[0]._parameter._id": "string",
+          "[0]._parameter._name": "string",
+          "[0]._parameter._description": "string"
         },
         "cachedResult": [
+          {
+            "_parameter": {
+              "_id": "29",
+              "_type_id": "250",
+              "_name": "AMBIENT_LIGHT",
+              "_description": "Işık",
+              "_unit": "%"
+            },
+            "_model": {
+              "_id": "4",
+              "_model_number": "1003",
+              "_name": "SENSOR_THL",
+              "_description": "Sıcaklık, Nem, Işık Sensörü"
+            },
+            "_subId": "0"
+          },
           {
             "_parameter": {
               "_id": "11",
@@ -406,26 +422,10 @@
               "_unit": "%"
             },
             "_model": {
-              "_id": "3",
-              "_model_number": "1005",
-              "_name": "SENSOR_THP",
-              "_description": "Sıcaklık, Nem, Basınç Sensörü"
-            },
-            "_subId": "0"
-          },
-          {
-            "_parameter": {
-              "_id": "3",
-              "_type_id": "226",
-              "_name": "PRESSURE_CMD",
-              "_description": "Basınç",
-              "_unit": "pascal"
-            },
-            "_model": {
-              "_id": "3",
-              "_model_number": "1005",
-              "_name": "SENSOR_THP",
-              "_description": "Sıcaklık, Nem, Basınç Sensörü"
+              "_id": "4",
+              "_model_number": "1003",
+              "_name": "SENSOR_THL",
+              "_description": "Sıcaklık, Nem, Işık Sensörü"
             },
             "_subId": "0"
           },
@@ -438,10 +438,10 @@
               "_unit": "%rh"
             },
             "_model": {
-              "_id": "3",
-              "_model_number": "1005",
-              "_name": "SENSOR_THP",
-              "_description": "Sıcaklık, Nem, Basınç Sensörü"
+              "_id": "4",
+              "_model_number": "1003",
+              "_name": "SENSOR_THL",
+              "_description": "Sıcaklık, Nem, Işık Sensörü"
             },
             "_subId": "0"
           },
@@ -454,28 +454,12 @@
               "_unit": "°C"
             },
             "_model": {
-              "_id": "3",
-              "_model_number": "1005",
-              "_name": "SENSOR_THP",
-              "_description": "Sıcaklık, Nem, Basınç Sensörü"
+              "_id": "4",
+              "_model_number": "1003",
+              "_name": "SENSOR_THL",
+              "_description": "Sıcaklık, Nem, Işık Sensörü"
             },
             "_subId": "0"
-          },
-          {
-            "_parameter": {
-              "_id": "1",
-              "_type_id": "224",
-              "_name": "TEMPERATURE_CMD",
-              "_description": "Sıcaklık",
-              "_unit": "°C"
-            },
-            "_model": {
-              "_id": "3",
-              "_model_number": "1005",
-              "_name": "SENSOR_THP",
-              "_description": "Sıcaklık, Nem, Basınç Sensörü"
-            },
-            "_subId": "1"
           }
         ],
         "codeGenerationParams": {
@@ -487,7 +471,7 @@
         "parameters": {
           "txtEmail": "info@lnl.com.tr",
           "txtPassword": "1234",
-          "p1": "3"
+          "p1": "4"
         },
         "requiredLibraries": [
           "xhr.js",
