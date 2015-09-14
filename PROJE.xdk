@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "appDesigner",
       "projectGuid": "6f83d6cc-61a8-444f-8779-405631fdc413",
-      "lastModifiedDate": 1442230744310,
+      "lastModifiedDate": 1442233889695,
       "creationDate": 1438649412082
     },
     "XDK-app-designer": "true",
@@ -471,6 +471,41 @@
         "parameters": {
           "txtEmail": "info@lnl.com.tr",
           "txtPassword": "1234",
+          "p1": "4"
+        },
+        "requiredLibraries": [
+          "xhr.js",
+          "xdk/services/service-credentials.js",
+          "xdk/services/service-methods.js"
+        ]
+      },
+      {
+        "methodName": "LNLdatatimestamp",
+        "serviceName": "LNL",
+        "resultType": "object",
+        "selectedPaths": {
+          ".4._value": "object",
+          ".4._timestamp": "object",
+          ".4._pending_state": "object",
+          ".4._desired_value": "object"
+        },
+        "cachedResult": {
+          "4": {
+            "_value": null,
+            "_timestamp": null,
+            "_pending_state": null,
+            "_desired_value": null
+          }
+        },
+        "codeGenerationParams": {
+          "apiName": "LNL",
+          "endpointName": "LNL Web Services",
+          "methodName": "datatimestamp",
+          "namespace": "intel.xdk.services."
+        },
+        "parameters": {
+          "txtEmail": "",
+          "txtPassword": "",
           "p1": "4"
         },
         "requiredLibraries": [

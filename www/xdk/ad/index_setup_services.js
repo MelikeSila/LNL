@@ -44,11 +44,15 @@ data_views.group.push({"model":{"_id":null,"_name":null,"_description":null,"_ma
 
 data_views.single.push({"selector":".uib_w_74","options":{"effect":["html","attributes"]}});
 
+
+
+
+data_views.single.push({"selector":".uib_w_87","options":{"effect":["html","attributes"]}});
+
+
 data_views.single.push({"selector":"#device_model_id","options":{"effect":["html","attributes"]}});
 
-data_views.single.push({"selector":".uib_w_85","options":{"effect":["html","attributes"]}});
-
-data_views.group.push({"model":{"_subId":null,"_model._description":null,"_model._name":null,"_model._model_number":null,"_model._id":null,"_parameter._unit":null,"_parameter._type_id":null,"_parameter._id":null,"_parameter._name":null,"_parameter._description":null},"child":".uib_w_89","parent":".uib_w_88"});
+data_views.group.push({"model":{"_subId":null,"_model._description":null,"_model._name":null,"_model._model_number":null,"_model._id":null,"_parameter._unit":null,"_parameter._type_id":null,"_parameter._id":null,"_parameter._name":null,"_parameter._description":null},"child":".uib_w_85","parent":".uib_w_84"});
 /* prepare controllers */
 
 data_support.prepare_mvc("#list1", "intel.xdk.services.LNLVirtual1", ["virtualChannels"], "standard-list", data_views);
@@ -68,8 +72,11 @@ data_support.prepare_mvc(".uib_w_63", "intel.xdk.services.LNLonscenedevices", []
 
 data_support.prepare_mvc(".uib_w_74", "intel.xdk.services.LNLsceneDevice", ["_device"], "null", data_views);
 
+
+
+data_support.prepare_mvc(".uib_w_87", "intel.xdk.services.LNLdatatimestamp", [], "null", data_views);
+
+
 data_support.prepare_mvc("#device_model_id", "intel.xdk.services.LNLsceneDevice", ["_device"], "null", data_views);
 
-data_support.prepare_mvc(".uib_w_85", "intel.xdk.services.LNLmodelparameters", ["0","_parameter"], "null", data_views);
-
-data_support.prepare_mvc(".uib_w_89", "intel.xdk.services.LNLmodelparameters", [], "standard-list", data_views);
+data_support.prepare_mvc(".uib_w_85", "intel.xdk.services.LNLmodelparameters", [], "standard-list", data_views);

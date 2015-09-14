@@ -194,14 +194,7 @@
                                                     </li>
 
                                                 </ul>
-                                                <ul class="list widget uib_w_88 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                                    <li class="widget uib_w_89 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="multiple" data-rpath="[]"><a>{{_model._model_number}}</a>
-                                                    </li>
-                                                    <li class="widget uib_w_90" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
-                                                    </li>
-                                                    <li class="widget uib_w_91" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
-                                                    </li>
-                                                </ul><span class="uib_shim"></span>
+                                                <span class="uib_shim"></span>
                                             </div>
                                         </div>
                                         <span class="uib_shim"></span>
@@ -289,12 +282,12 @@
 
                                     <a class="button widget uib_w_82 d-margins icon refresh yellow" data-uib="app_framework/button" data-ver="1" id="Geri3">Geri</a>
                                     <ul class="list widget uib_w_83 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="._device"><a>{{_default_name}}</a>
-
+                                        <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" data-rpath="._device" onclick="call_modelparameters()"><a>{{_default_name}}</a>
                                         </li>
+
                                         <li class="widget uib_w_74 list4_color template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLsceneDevice" data-sc="single" id="device_model_id" data-rpath="._device">{{_device_model._id}}
-
                                         </li>
+
                                     </ul><span class="uib_shim"></span>
                                 </div>
                             </div>
@@ -307,10 +300,10 @@
                                 <div class="widget-container content-area vertical-col">
 
                                     <ul class="list widget uib_w_84 d-margins" data-uib="app_framework/listview" data-ver="1">
-                                        <li class="widget uib_w_85 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="single" data-rpath="[]._parameter"><a>{{_name}}</a>
+                                        <li class="widget uib_w_85 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLmodelparameters" data-sc="multiple" data-rpath="[]"><a>{{_parameter._description}}</a>
                                         </li>
 
-                                        <li class="widget uib_w_87" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                                        <li class="widget uib_w_87 template" data-uib="app_framework/listitem" data-ver="1" data-sm="LNLdatatimestamp" data-sc="single" data-rpath="(base)"><a>{{4._value}}</a>
                                         </li>
                                     </ul><span class="uib_shim"></span>
                                 </div>
@@ -329,10 +322,8 @@
                 var formUsername = document.forms.login.e_posta.value;
                 var formPassword = document.forms.login.password.value;
                 // Validate username and password
-                
                 //sadece id sini kullanmak istediğim bir listi hide yaptım.
                 document.getElementById("device_model_id").style.display = 'none'; //block
-                
                 if (formUsername === null || formUsername === "") {
                     alert("Username must be filled out");
                     alert("Login failed!!!");
@@ -373,7 +364,6 @@
                     $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=onscenedevices&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + _id,function(jsondata){
                         if(jsondata == null){
                             alert("Bu bölgede herhangi bir cihaz bulunmamaktadır!");
-                            //bu kısımda alt web servislerin verilerini sıfırlamam gerekioyr.
                         }else{
                             activate_subpage("#uib_page_5");
 //                              onscenedevices
@@ -400,7 +390,6 @@
                     $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=sceneDevice&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + _id,function(jsondata){
                         if(jsondata == null){
                             alert("Cihaz hakkında bilgi bulunamadı!");
-//                            bu kısımda alt web servislerin verilerini sıfırlamam gerekiyor ki aşağıda bir öncekinden kalan açık kalmasın(eğer bu dataları birbirine bağlarsam buna // //                               ihtiyaç duymayacağım sanırım.)
                         }else{
                             activate_subpage("#uib_page_8");
 //                              onscenedevices
@@ -412,6 +401,29 @@
                     });
             }
         </script>
+
+        <script>
+            //id si alınan bölgenin device'ı var mı diye kontrol ediyor ve device yoksa alert ediyor. device varsa device'ı ekranda seçmesi için gösteriyor.
+            function call_modelparameters(){
+                var MINLENGTH = 3;
+                var formUsername = document.forms.login.e_posta.value;
+                var formPassword = document.forms.login.password.value;
+                var mafy = document.getElementById("device_model_id").innerHTML;
+                    $.getJSON( "http://www.ayatar.com/ayanet_service.php?SERV=modelparameters&txtEmail="+ formUsername +"&txtPassword="+ formPassword + "&p1=" + mafy, function(jsondata){
+                        if(jsondata == null){
+                            alert("Cihaz hakkında bilgi bulunamadı!");
+                        }else{
+                            activate_subpage("#uib_page_9");
+//                              modelparameter
+                            intel.xdk.services.LNLmodelparameters({txtEmail:formUsername , txtPassword:formPassword, p1:mafy}).then(function(data){
+                                console.log("here is the data from the service", data);
+                            })
+                            return;                      
+                        }
+                    });
+            }
+        </script>
+
         <script>
             function LogOut(){
                 activate_subpage("#uib_page_7"); 

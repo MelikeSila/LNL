@@ -1,4 +1,4 @@
-/*xdk-auto-gen:service-methods:common:start:2b6929ba124338dc16aeb32796ddb009*/
+/*xdk-auto-gen:service-methods:common:start:bd98b8710a1f5019b336285cad7124bc*/
 
 var intel;
 if (!intel) intel = {};
@@ -258,22 +258,36 @@ intel.xdk.services.iodocs_.LNL = ((function(credentials) {
         var url = "http://www.ayatar.com/ayanet_service.php?SERV=modelparameters"+ "&" + $.param(params);
         return $.ajax({url: url, type: 'GET'}); 
     };
+    
+    exports.datatimestamp = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=data/timestamp"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
+    
   return exports;
 })
 )(intel.xdk.services.credentials.LNL,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
+intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
   var exports = {};
-  exports.GET = function (params) {
-    var url = params.URL ;
+  var baseUrl = 'http://api.usatoday.com/open/';
+
+  function getCensusData(path, params) {
+    params = params || {};
+    var url = baseUrl + 'census/' + path + '?api_key=' + credentials.apiKey + '&' + $.param(params);
     return $.ajax({url: url});
-  };
-  exports.POST = function (params) {
-    var url = params.URL ;
-    return $.ajax({url: url, type : 'POST'});
-  };
-  
+  }
+
+  exports.getLocations = getCensusData.bind(null, 'locations');
+  exports.getEthnicity = getCensusData.bind(null, 'ethnicity');
+  exports.getHousing = getCensusData.bind(null, 'housing');
+  exports.getPopulation = getCensusData.bind(null, 'population');
+  exports.getRace = getCensusData.bind(null, 'race');
+
   return exports;
-}))(intel.xdk.services.credentials.sandbox,intel.xdk.services.iodocs_.helpers);
+}))(intel.xdk.services.credentials.usatoday,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
@@ -320,24 +334,6 @@ intel.xdk.services.iodocs_.rottentomatoes = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.rottentomatoes,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'http://api.usatoday.com/open/';
-
-  function getCensusData(path, params) {
-    params = params || {};
-    var url = baseUrl + 'census/' + path + '?api_key=' + credentials.apiKey + '&' + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.getLocations = getCensusData.bind(null, 'locations');
-  exports.getEthnicity = getCensusData.bind(null, 'ethnicity');
-  exports.getHousing = getCensusData.bind(null, 'housing');
-  exports.getPopulation = getCensusData.bind(null, 'population');
-  exports.getRace = getCensusData.bind(null, 'race');
-
-  return exports;
-}))(intel.xdk.services.credentials.usatoday,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.klout = ((function (credentials) {
   var exports = {};
   var baseUrl = 'http://api.klout.com/v2/';
@@ -374,6 +370,19 @@ intel.xdk.services.iodocs_.klout = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.klout,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.sandbox = ((function (credentials) {
+  var exports = {};
+  exports.GET = function (params) {
+    var url = params.URL ;
+    return $.ajax({url: url});
+  };
+  exports.POST = function (params) {
+    var url = params.URL ;
+    return $.ajax({url: url, type : 'POST'});
+  };
+  
+  return exports;
+}))(intel.xdk.services.credentials.sandbox,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   var exports = {};
   
@@ -952,23 +961,6 @@ intel.xdk.services.iodocs_.foursquare = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.foursquare,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
-  var exports = {};
-  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
-
-  function getPlaceData(path, params) {
-    params = params || {};
-    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
-    return $.ajax({url: url});
-  }
-
-  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
-  exports.textSearch = getPlaceData.bind(null, 'textsearch');
-  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
-  exports.placeDetails = getPlaceData.bind(null, 'details');
-
-  return exports;
-}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.wunderground = ((function (credentials, helpers) {
   'use strict';
 
@@ -1061,6 +1053,139 @@ intel.xdk.services.iodocs_.spotify = ((function (credentials) {
 
   return exports;
 }))(intel.xdk.services.credentials.spotify,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.googleplaces = ((function (credentials) {
+  var exports = {};
+  var baseUrl = 'https://maps.googleapis.com/maps/api/place/';
+
+  function getPlaceData(path, params) {
+    params = params || {};
+    var url = baseUrl + path + '/json?key=' + credentials.apiKey + '&sensor=false&' + $.param(params);
+    return $.ajax({url: url});
+  }
+
+  exports.placeSearch = getPlaceData.bind(null, 'nearbysearch');
+  exports.textSearch = getPlaceData.bind(null, 'textsearch');
+  exports.radarSearch = getPlaceData.bind(null, 'radarsearch');
+  exports.placeDetails = getPlaceData.bind(null, 'details');
+
+  return exports;
+}))(intel.xdk.services.credentials.googleplaces,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.itunes = ((function (credentials, helpers) {
+  'use strict';
+
+  var ITUNES = 'https://itunes.apple.com/search?';
+
+  return {
+    search: function(params) {
+      return $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: ITUNES + $.param(params)
+      });
+    }
+  };
+
+})
+)(intel.xdk.services.credentials.itunes,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.flickr = ((function (credentials, helpers) {
+  var exports = {photos:{}, people:{}, galleries:{}, interestingness:{}, photosets:{}};
+    
+    var utils = {};
+    
+    utils.sprintf = function(format, etc)
+    {
+        var arg = arguments;
+        var i = 1;
+        return format.replace(/%((%)|s)/g, function (m) { return m[2] || arg[i++] ;});
+    };
+  
+    function jsonCleaner(x) 
+    {
+        var type = typeof x;
+        if (x instanceof Array) {
+          type = 'array';
+        }
+        if ((type == 'array') || (type == 'object')) {
+          for (var k in x) {
+            var v = x[k];
+            if ((v === '') && (type == 'object')) {
+              delete x[k];
+            } else {
+              jsonCleaner(v);
+            }
+          }
+          return x;
+        }
+    }
+    
+    /*
+     photo_object
+        Object
+        farm: 3
+        id: "14427316793"
+        isfamily: 0
+        isfriend: 0
+        ispublic: 1
+        owner: "62591523@N08"
+        secret: "e5d42a9a0d"
+        server: "2933"
+        title: "cat"
+    */
+    function construct_url(photo_obj)
+    {
+        //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+        var template = "https://farm%s.staticflickr.com/%s/%s_%s.jpg";
+        return utils.sprintf(template, photo_obj.farm, photo_obj.server, photo_obj.id, photo_obj.secret);        
+    }
+    
+    function get_method_call(method_name, append_url)
+    {
+        return function(params) 
+               {
+                var url = 'https://api.flickr.com/services/rest/';
+                params.method = "flickr." + method_name; 
+                params.api_key = credentials.apiKey;
+                params.format = "json";
+                if (params) url = url + '?' + $.param(jsonCleaner(params));
+                var promise =  $.ajax({url: url, type: 'GET', dataType:'jsonp', jsonp:'jsoncallback'});
+                if(append_url)
+                {
+                    return promise.then(function(data)
+                          {
+                              //data.photos.photo[ {photoObj}...]
+                              var photo_obj = data[append_url];
+                              $.each(photo_obj.photo, function(index, photo_obj)
+                                     {
+                                         photo_obj.url = construct_url(photo_obj);
+                                     });
+                              return data;
+                          });
+                }
+                else
+                {
+                    return promise; 
+                }
+              };
+    }
+  
+  exports.photos_search             = get_method_call("photos.search", "photos");
+  
+  exports.people_getPublicPhotos    = get_method_call("people.getPublicPhotos", "photos");
+  exports.people_getPhotosOf        = get_method_call("people.getPhotosOf", "photos");
+    
+  exports.galleries_getPhotos       = get_method_call("galleries.getPhotos", true);
+  exports.galleries_getListForPhoto = get_method_call("galleries.getListForPhoto", false);
+  exports.galleries_getList         = get_method_call("galleries.getList", false);
+  exports.galleries_getInfo         = get_method_call("galleries.getInfo", false);
+    
+  exports.interestingness_getList   = get_method_call("interestingness.getList", "photos");
+    
+  exports.photosets_getPhotos       = get_method_call("photosets.getPhotos", "photoset");
+  exports.photosets_getList         = get_method_call("photosets.getList", false);
+  exports.photosets_getInfo         = get_method_call("photosets.getInfo", false);
+  
+  return exports;
+}))(intel.xdk.services.credentials.flickr,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.MarkitOnDemand = ((function (credentials, helpers) {
   var exports = {};
     
@@ -1957,122 +2082,6 @@ intel.xdk.services.iodocs_.db_core = ((function (credentials, helpers) {
 
   return exports;
 }))(intel.xdk.services.credentials.db_core,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.itunes = ((function (credentials, helpers) {
-  'use strict';
-
-  var ITUNES = 'https://itunes.apple.com/search?';
-
-  return {
-    search: function(params) {
-      return $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: ITUNES + $.param(params)
-      });
-    }
-  };
-
-})
-)(intel.xdk.services.credentials.itunes,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.flickr = ((function (credentials, helpers) {
-  var exports = {photos:{}, people:{}, galleries:{}, interestingness:{}, photosets:{}};
-    
-    var utils = {};
-    
-    utils.sprintf = function(format, etc)
-    {
-        var arg = arguments;
-        var i = 1;
-        return format.replace(/%((%)|s)/g, function (m) { return m[2] || arg[i++] ;});
-    };
-  
-    function jsonCleaner(x) 
-    {
-        var type = typeof x;
-        if (x instanceof Array) {
-          type = 'array';
-        }
-        if ((type == 'array') || (type == 'object')) {
-          for (var k in x) {
-            var v = x[k];
-            if ((v === '') && (type == 'object')) {
-              delete x[k];
-            } else {
-              jsonCleaner(v);
-            }
-          }
-          return x;
-        }
-    }
-    
-    /*
-     photo_object
-        Object
-        farm: 3
-        id: "14427316793"
-        isfamily: 0
-        isfriend: 0
-        ispublic: 1
-        owner: "62591523@N08"
-        secret: "e5d42a9a0d"
-        server: "2933"
-        title: "cat"
-    */
-    function construct_url(photo_obj)
-    {
-        //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-        var template = "https://farm%s.staticflickr.com/%s/%s_%s.jpg";
-        return utils.sprintf(template, photo_obj.farm, photo_obj.server, photo_obj.id, photo_obj.secret);        
-    }
-    
-    function get_method_call(method_name, append_url)
-    {
-        return function(params) 
-               {
-                var url = 'https://api.flickr.com/services/rest/';
-                params.method = "flickr." + method_name; 
-                params.api_key = credentials.apiKey;
-                params.format = "json";
-                if (params) url = url + '?' + $.param(jsonCleaner(params));
-                var promise =  $.ajax({url: url, type: 'GET', dataType:'jsonp', jsonp:'jsoncallback'});
-                if(append_url)
-                {
-                    return promise.then(function(data)
-                          {
-                              //data.photos.photo[ {photoObj}...]
-                              var photo_obj = data[append_url];
-                              $.each(photo_obj.photo, function(index, photo_obj)
-                                     {
-                                         photo_obj.url = construct_url(photo_obj);
-                                     });
-                              return data;
-                          });
-                }
-                else
-                {
-                    return promise; 
-                }
-              };
-    }
-  
-  exports.photos_search             = get_method_call("photos.search", "photos");
-  
-  exports.people_getPublicPhotos    = get_method_call("people.getPublicPhotos", "photos");
-  exports.people_getPhotosOf        = get_method_call("people.getPhotosOf", "photos");
-    
-  exports.galleries_getPhotos       = get_method_call("galleries.getPhotos", true);
-  exports.galleries_getListForPhoto = get_method_call("galleries.getListForPhoto", false);
-  exports.galleries_getList         = get_method_call("galleries.getList", false);
-  exports.galleries_getInfo         = get_method_call("galleries.getInfo", false);
-    
-  exports.interestingness_getList   = get_method_call("interestingness.getList", "photos");
-    
-  exports.photosets_getPhotos       = get_method_call("photosets.getPhotos", "photoset");
-  exports.photosets_getList         = get_method_call("photosets.getList", false);
-  exports.photosets_getInfo         = get_method_call("photosets.getInfo", false);
-  
-  return exports;
-}))(intel.xdk.services.credentials.flickr,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.google_analytics = ((function (credentials) {
   var exports = {};
     
@@ -2290,74 +2299,6 @@ intel.xdk.services.iodocs_.kinvey = ((function (credentials) {
   };
   return exports;
 }))(intel.xdk.services.credentials.kinvey,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
-  var exports = {};
-    
-function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (var k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-  
-  /* Data Feed Function */
-  exports.methodA1 = function (params) {
-    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
-    return $.ajax({url: url});
-  };
-    
-  function get_jambase_handler(endpoint_uri)
-  {
-      return function(params) {
-        params = jsonCleaner(params);
-        var url = endpoint_uri; 
-        params.api_key = credentials.apiKey;
-        url = url + '?' + $.param(params);
-        return $.ajax({url: url, type: 'GET'});
-      };
-  }
-    
-  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
-  function get_eventBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/events');
-  }
-  
-  function get_artistBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/artists');
-  }
-
-  function get_venuesBy_method()
-  {
-      return get_jambase_handler('http://api.jambase.com/venues');
-  }
-  
-  exports.eventById           = get_eventBy_method();
-  exports.eventListByZipcode  = get_eventBy_method()
-  exports.eventListByArtistId = get_eventBy_method();
-  exports.eventListByVenueId  = get_eventBy_method();
-
-  exports.artistsByName       = get_artistBy_method();
-  exports.artistById          = get_artistBy_method();
-  
-  exports.venuesByName        = get_venuesBy_method();
-  exports.venuesByZipcode     = get_venuesBy_method();
-  exports.venueById           = get_venuesBy_method();
-    
-  return exports;
-}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2461,6 +2402,74 @@ intel.xdk.services.iodocs_.tms = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.tms,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.jambase = ((function (credentials, helpers) {
+  var exports = {};
+    
+function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (var k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+  
+  /* Data Feed Function */
+  exports.methodA1 = function (params) {
+    var url = 'http://example.api/methodA1?api_key_var_name=' + credentials.apiKey;
+    return $.ajax({url: url});
+  };
+    
+  function get_jambase_handler(endpoint_uri)
+  {
+      return function(params) {
+        params = jsonCleaner(params);
+        var url = endpoint_uri; 
+        params.api_key = credentials.apiKey;
+        url = url + '?' + $.param(params);
+        return $.ajax({url: url, type: 'GET'});
+      };
+  }
+    
+  //all the 'eventById, eventListByZipcode, etc are just the same endpoint with different param combinations.
+  function get_eventBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/events');
+  }
+  
+  function get_artistBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/artists');
+  }
+
+  function get_venuesBy_method()
+  {
+      return get_jambase_handler('http://api.jambase.com/venues');
+  }
+  
+  exports.eventById           = get_eventBy_method();
+  exports.eventListByZipcode  = get_eventBy_method()
+  exports.eventListByArtistId = get_eventBy_method();
+  exports.eventListByVenueId  = get_eventBy_method();
+
+  exports.artistsByName       = get_artistBy_method();
+  exports.artistById          = get_artistBy_method();
+  
+  exports.venuesByName        = get_venuesBy_method();
+  exports.venuesByZipcode     = get_venuesBy_method();
+  exports.venueById           = get_venuesBy_method();
+    
+  return exports;
+}))(intel.xdk.services.credentials.jambase,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.soundcloud = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2580,143 +2589,6 @@ intel.xdk.services.iodocs_.soundcloud = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.soundcloud,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
-    var exports = {};
-    exports.getIPLocation = function (params) {
-        var url = 'http://api.map.baidu.com/location/ip?ak=' + credentials.apiKey + '&coor=bd09ll';
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                ip: params.ip_address
-            }
-        });
-    };
-
-    exports.enGeoCode = function (params) {
-        var url = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                address: params.address
-            }
-        });
-    };
-
-    exports.deGeoCode = function (params) {
-        var url = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                location: params.latitude + ',' + params.longitude
-            }
-        });
-    };
-
-    exports.roundNearBy = function (params) {
-        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                location: params.location,
-                query: params.query,
-                radius: params.radius
-            }
-        });
-    };
-
-    exports.getNearByGrouponInfo = function (params) {
-        var url = 'http://api.map.baidu.com/place/v2/eventsearch?event=groupon&output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                location: params.location,
-                query: params.query,
-                region: params.region,
-                radius: params.radius,
-                page_size: params.page_size
-            }
-        });
-    };
-
-    exports.getPlaceByCity = function (params) {
-        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                query: params.query,
-                scope: params.scope,
-                region: params.region,
-                page_num: params.page_num,
-                page_size: params.page_size
-            }
-        });
-    };
-
-    exports.getPlacesByRectangleArea = function (params) {
-        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                query: params.query,
-                scope: params.scope,
-                bounds: params.bounds,
-                page_num: params.page_num,
-                page_size: params.page_size
-            }
-        });
-    };
-
-    exports.getPlacesByRoundArea = function (params) {
-        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                query: params.query,
-                scope: params.scope,
-                location: params.location,
-                radius: params.radius,
-                page_num: params.page_num,
-                page_size: params.page_size
-            }
-        });
-    };
-
-    exports.getDirection = function (params) {
-        var url = 'http://api.map.baidu.com/direction/v1?output=json&ak=' + credentials.apiKey;
-        return $.ajax({
-            url : url,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                mode: params.mode,
-                origin: params.origin,
-                destination: params.destination,
-                region: params.region,
-                origin_region: params.origin_region,
-                destination_region: params.destination_region,
-                tactics: params.tactics
-            }
-        });
-    };
-
-    return exports;
-}))(intel.xdk.services.credentials.BaiduMap,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.Weibo = ((function (credentials, helpers) {
   var exports = {};
   
@@ -2877,6 +2749,143 @@ intel.xdk.services.iodocs_.mapquest = ((function (credentials, helpers) {
 
 })
 )(intel.xdk.services.credentials.mapquest,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.BaiduMap = ((function (credentials, helpers) {
+    var exports = {};
+    exports.getIPLocation = function (params) {
+        var url = 'http://api.map.baidu.com/location/ip?ak=' + credentials.apiKey + '&coor=bd09ll';
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                ip: params.ip_address
+            }
+        });
+    };
+
+    exports.enGeoCode = function (params) {
+        var url = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                address: params.address
+            }
+        });
+    };
+
+    exports.deGeoCode = function (params) {
+        var url = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                location: params.latitude + ',' + params.longitude
+            }
+        });
+    };
+
+    exports.roundNearBy = function (params) {
+        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                location: params.location,
+                query: params.query,
+                radius: params.radius
+            }
+        });
+    };
+
+    exports.getNearByGrouponInfo = function (params) {
+        var url = 'http://api.map.baidu.com/place/v2/eventsearch?event=groupon&output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                location: params.location,
+                query: params.query,
+                region: params.region,
+                radius: params.radius,
+                page_size: params.page_size
+            }
+        });
+    };
+
+    exports.getPlaceByCity = function (params) {
+        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                query: params.query,
+                scope: params.scope,
+                region: params.region,
+                page_num: params.page_num,
+                page_size: params.page_size
+            }
+        });
+    };
+
+    exports.getPlacesByRectangleArea = function (params) {
+        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                query: params.query,
+                scope: params.scope,
+                bounds: params.bounds,
+                page_num: params.page_num,
+                page_size: params.page_size
+            }
+        });
+    };
+
+    exports.getPlacesByRoundArea = function (params) {
+        var url = 'http://api.map.baidu.com/place/v2/search?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                query: params.query,
+                scope: params.scope,
+                location: params.location,
+                radius: params.radius,
+                page_num: params.page_num,
+                page_size: params.page_size
+            }
+        });
+    };
+
+    exports.getDirection = function (params) {
+        var url = 'http://api.map.baidu.com/direction/v1?output=json&ak=' + credentials.apiKey;
+        return $.ajax({
+            url : url,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                mode: params.mode,
+                origin: params.origin,
+                destination: params.destination,
+                region: params.region,
+                origin_region: params.origin_region,
+                destination_region: params.destination_region,
+                tactics: params.tactics
+            }
+        });
+    };
+
+    return exports;
+}))(intel.xdk.services.credentials.BaiduMap,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.amazon_product_search = ((function (credentials, helpers) {
   var exports = {};
     
@@ -3184,6 +3193,61 @@ intel.xdk.services.iodocs_.Etsy = ((function (credentials) {
   
   return exports;
 }))(intel.xdk.services.credentials.Etsy,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
+  var exports = {};
+    
+  function jsonCleaner(x) {
+    var type = typeof x;
+    if (x instanceof Array) {
+      type = 'array';
+    }
+    if ((type == 'array') || (type == 'object')) {
+      for (k in x) {
+        var v = x[k];
+        if ((v === '') && (type == 'object')) {
+          delete x[k];
+        } else {
+          jsonCleaner(v);
+        }
+      }
+      return x;
+    }
+  }
+    
+  exports.stats = function (params) {
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'stats';
+    return $.ajax({url: url});
+  };
+
+  exports.cities = function (params) {
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'cities';
+    return $.ajax({url: url});
+  };
+    
+  exports.restaurants = function (params) {
+    params = jsonCleaner(params);
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'restaurants';
+    if (params) url = url + '?' + $.param(params);
+    return $.ajax({url: url});
+  };
+    
+  exports.restaurant_by_id = function (params) {
+    //params = jsonCleaner(params);
+    var url = 'http://opentable.herokuapp.com/api/';
+    url += 'restaurants/' + params.id;
+    //if (params) url = url + '?' + $.param(params);
+    return $.ajax({url: url});
+  };
+  
+ 
+  
+  
+  
+  return exports;
+}))(intel.xdk.services.credentials.OpenTable,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3248,61 +3312,6 @@ intel.xdk.services.iodocs_.EventBrite = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.EventBrite,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.OpenTable = ((function (credentials, helpers) {
-  var exports = {};
-    
-  function jsonCleaner(x) {
-    var type = typeof x;
-    if (x instanceof Array) {
-      type = 'array';
-    }
-    if ((type == 'array') || (type == 'object')) {
-      for (k in x) {
-        var v = x[k];
-        if ((v === '') && (type == 'object')) {
-          delete x[k];
-        } else {
-          jsonCleaner(v);
-        }
-      }
-      return x;
-    }
-  }
-    
-  exports.stats = function (params) {
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'stats';
-    return $.ajax({url: url});
-  };
-
-  exports.cities = function (params) {
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'cities';
-    return $.ajax({url: url});
-  };
-    
-  exports.restaurants = function (params) {
-    params = jsonCleaner(params);
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'restaurants';
-    if (params) url = url + '?' + $.param(params);
-    return $.ajax({url: url});
-  };
-    
-  exports.restaurant_by_id = function (params) {
-    //params = jsonCleaner(params);
-    var url = 'http://opentable.herokuapp.com/api/';
-    url += 'restaurants/' + params.id;
-    //if (params) url = url + '?' + $.param(params);
-    return $.ajax({url: url});
-  };
-  
- 
-  
-  
-  
-  return exports;
-}))(intel.xdk.services.credentials.OpenTable,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.RSS = ((function (credentials, helpers) {
   var exports = {};
   exports.Request = function (params) {
@@ -3315,6 +3324,87 @@ intel.xdk.services.iodocs_.RSS = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.RSS,intel.xdk.services.iodocs_.helpers);
+intel.xdk.services.iodocs_.UPS = ((function (credentials, helpers) {
+  var exports = {};
+    
+  function createRequest(){
+      
+  };
+  function createAccessSubstr(account_no, user_id, password){
+      return '<?xml version="1.0"?><AccessRequest xml:lang="en-US"><AccessLicenseNumber>'+ account_no + '</AccessLicenseNumber>            <UserId>'+ user_id +'</UserId><Password>' + password +'</Password></AccessRequest>';
+  };
+  function createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string){
+      return '<?xml version="1.0"?><'+ request_type+ ' xml:lang="en-US"><Request><TransactionReference><CustomerContext>' + customer_context + '</CustomerContext><XpciVersion>1.0</XpciVersion></TransactionReference><RequestAction>'+ request_action +'</RequestAction><RequestOption>'+ request_option +'</RequestOption></Request>' + request_details_string + '</'+request_type+'>';
+  };    
+    
+    
+  exports.tracking = function (params) {
+    var url = 'https://www.ups.com/ups.app/xml/Track' ;
+      var request_type = 'TrackRequest';
+      var customer_context = 'QAST Track';
+      var request_action = 'Track';
+      var request_option = 'activity';
+      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
+      var request_details_string = '<TrackingNumber>' + params.tracking_no +'</TrackingNumber>';
+      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
+      var xml_req = access_string + request_string;
+    return $.ajax({url: url, 
+                   data: xml_req,
+                   type: 'POST'                   
+                  });
+  };
+  exports.address_validation = function (params) {
+    var url = 'https://www.ups.com/ups.app/xml/AV' ;
+    var request_type = 'AddressValidationRequest';
+    var customer_context = 'Maryam Dennis-Customer Data';
+    var request_action = 'AV';
+      var request_option = '';
+      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
+      var request_details_string = '<Address><City>' + params.city +'</City><StateProvinceCode>' + params.StateProvinceCode + '</StateProvinceCode></Address>';
+      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
+      var xml_req = access_string + request_string;
+    return $.ajax({url: url, 
+                   data: xml_req,
+                   type: 'POST'                   
+                  });      
+  };
+    exports.street_address_validation = function (params) {
+    var url = 'https://www.ups.com/ups.app/xml/XAV' ;
+    var request_type = 'AddressValidationRequest';
+    var customer_context = '';
+    var request_action = 'XAV';
+      var request_option = '3';
+      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
+      var request_details_string = '<AddressKeyFormat><AddressLine>' + params.address_line1 +'</AddressLine><AddressLine>' + params.address_line2 +'</AddressLine><PostCodePrimaryLow>' + params.postcode_primary + '</PostCodePrimaryLow><CountryCode>'+ params.country_code +'</CountryCode></AddressKeyFormat>';
+      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
+      var xml_req = access_string + request_string;
+    return $.ajax({url: url, 
+                   data: xml_req,
+                   type: 'POST'                   
+                  });      
+  };
+    exports.locator = function (params) {
+    var url = 'https://www.ups.com/ups.app/xml/Locator' ;
+    var request_type = 'LocatorRequest';
+    var customer_context = '';
+    var request_action = 'Locator';
+      var request_option = '1';
+      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
+      var request_details_string = '<OriginAddress><AddressKeyFormat><AddressLine>' + params.address_line1 +'</AddressLine><AddressLine>' + params.address_line2 +'</AddressLine><PostCodePrimaryLow>' + params.postcode_primary + '</PostCodePrimaryLow><CountryCode>'+ params.country_code +'</CountryCode></AddressKeyFormat></OriginAddress>';
+        request_details_string = request_details_string + '<Translate><LanguageCode>ENG</LanguageCode></Translate>';
+        request_details_string = request_details_string + '<LocationSearchCriteria><SearchOption><OptionType><Code>' + params.search_criteria + '</Code></OptionType></SearchOption></LocationSearchCriteria>';
+        
+      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
+      var xml_req = access_string + request_string ;
+    return $.ajax({url: url, 
+                   data: xml_req,
+                   type: 'POST'                   
+                  });      
+  };    
+    
+  
+  return exports;
+}))(intel.xdk.services.credentials.UPS,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.twitter = ((function (credentials, helpers) {
   var exports = {};
 
@@ -3771,87 +3861,6 @@ intel.xdk.services.iodocs_.twitter = ((function (credentials, helpers) {
   
   return exports;
 }))(intel.xdk.services.credentials.twitter,intel.xdk.services.iodocs_.helpers);
-intel.xdk.services.iodocs_.UPS = ((function (credentials, helpers) {
-  var exports = {};
-    
-  function createRequest(){
-      
-  };
-  function createAccessSubstr(account_no, user_id, password){
-      return '<?xml version="1.0"?><AccessRequest xml:lang="en-US"><AccessLicenseNumber>'+ account_no + '</AccessLicenseNumber>            <UserId>'+ user_id +'</UserId><Password>' + password +'</Password></AccessRequest>';
-  };
-  function createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string){
-      return '<?xml version="1.0"?><'+ request_type+ ' xml:lang="en-US"><Request><TransactionReference><CustomerContext>' + customer_context + '</CustomerContext><XpciVersion>1.0</XpciVersion></TransactionReference><RequestAction>'+ request_action +'</RequestAction><RequestOption>'+ request_option +'</RequestOption></Request>' + request_details_string + '</'+request_type+'>';
-  };    
-    
-    
-  exports.tracking = function (params) {
-    var url = 'https://www.ups.com/ups.app/xml/Track' ;
-      var request_type = 'TrackRequest';
-      var customer_context = 'QAST Track';
-      var request_action = 'Track';
-      var request_option = 'activity';
-      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
-      var request_details_string = '<TrackingNumber>' + params.tracking_no +'</TrackingNumber>';
-      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
-      var xml_req = access_string + request_string;
-    return $.ajax({url: url, 
-                   data: xml_req,
-                   type: 'POST'                   
-                  });
-  };
-  exports.address_validation = function (params) {
-    var url = 'https://www.ups.com/ups.app/xml/AV' ;
-    var request_type = 'AddressValidationRequest';
-    var customer_context = 'Maryam Dennis-Customer Data';
-    var request_action = 'AV';
-      var request_option = '';
-      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
-      var request_details_string = '<Address><City>' + params.city +'</City><StateProvinceCode>' + params.StateProvinceCode + '</StateProvinceCode></Address>';
-      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
-      var xml_req = access_string + request_string;
-    return $.ajax({url: url, 
-                   data: xml_req,
-                   type: 'POST'                   
-                  });      
-  };
-    exports.street_address_validation = function (params) {
-    var url = 'https://www.ups.com/ups.app/xml/XAV' ;
-    var request_type = 'AddressValidationRequest';
-    var customer_context = '';
-    var request_action = 'XAV';
-      var request_option = '3';
-      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
-      var request_details_string = '<AddressKeyFormat><AddressLine>' + params.address_line1 +'</AddressLine><AddressLine>' + params.address_line2 +'</AddressLine><PostCodePrimaryLow>' + params.postcode_primary + '</PostCodePrimaryLow><CountryCode>'+ params.country_code +'</CountryCode></AddressKeyFormat>';
-      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
-      var xml_req = access_string + request_string;
-    return $.ajax({url: url, 
-                   data: xml_req,
-                   type: 'POST'                   
-                  });      
-  };
-    exports.locator = function (params) {
-    var url = 'https://www.ups.com/ups.app/xml/Locator' ;
-    var request_type = 'LocatorRequest';
-    var customer_context = '';
-    var request_action = 'Locator';
-      var request_option = '1';
-      var access_string = createAccessSubstr(params.account_no, params.user_id, params.password);
-      var request_details_string = '<OriginAddress><AddressKeyFormat><AddressLine>' + params.address_line1 +'</AddressLine><AddressLine>' + params.address_line2 +'</AddressLine><PostCodePrimaryLow>' + params.postcode_primary + '</PostCodePrimaryLow><CountryCode>'+ params.country_code +'</CountryCode></AddressKeyFormat></OriginAddress>';
-        request_details_string = request_details_string + '<Translate><LanguageCode>ENG</LanguageCode></Translate>';
-        request_details_string = request_details_string + '<LocationSearchCriteria><SearchOption><OptionType><Code>' + params.search_criteria + '</Code></OptionType></SearchOption></LocationSearchCriteria>';
-        
-      var request_string = createRequestTypeSubstr(request_type, customer_context, request_action, request_option, request_details_string);
-      var xml_req = access_string + request_string ;
-    return $.ajax({url: url, 
-                   data: xml_req,
-                   type: 'POST'                   
-                  });      
-  };    
-    
-  
-  return exports;
-}))(intel.xdk.services.credentials.UPS,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.github = ((function (credentials, helpers) {
   var exports = {};
   /* OAuth Functions */
@@ -4689,6 +4698,14 @@ intel.xdk.services.iodocs_.LNL = ((function(credentials) {
         params[''] = credentials.txtPassword;
         params[''] = credentials.p1;
         var url = "http://www.ayatar.com/ayanet_service.php?SERV=modelparameters"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
+    
+    exports.datatimestamp = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=data/timestamp"+ "&" + $.param(params);
         return $.ajax({url: url, type: 'GET'}); 
     };
   return exports;
@@ -9130,6 +9147,13 @@ intel.xdk.services.iodocs_.LNL = ((function(credentials) {
         return $.ajax({url: url, type: 'GET'}); 
     };
     
+    exports.datatimestamp = function(params) {
+        params[''] = credentials.txtEmail;
+        params[''] = credentials.txtPassword;
+        params[''] = credentials.p1;
+        var url = "http://www.ayatar.com/ayanet_service.php?SERV=data/timestamp"+ "&" + $.param(params);
+        return $.ajax({url: url, type: 'GET'}); 
+    };
   return exports;
 }))(intel.xdk.services.credentials.LNL,intel.xdk.services.iodocs_.helpers);
 intel.xdk.services.iodocs_.usatoday = ((function (credentials) {
@@ -13320,3 +13344,6 @@ intel.xdk.services.LNLmodelparameters=intel.xdk.services.iodocs_.bindCommon.bind
 /*xdk-auto-gen:service-methods:LNLmodelparameters:start:6768b6b78834a1e6e5a80dc273f2db6c*/
 intel.xdk.services.LNLmodelparameters=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLmodelparameters",intel.xdk.services.iodocs_.LNL.modelparameters,{txtEmail:"info@lnl.com.tr",txtPassword:"1234",p1:"4",__proto__:{}});
 /*xdk-auto-gen:service-methods:LNLmodelparameters:end*/
+/*xdk-auto-gen:service-methods:LNLdatatimestamp:start:3629a9c65adc577dfe8ea8895b27da8d*/
+intel.xdk.services.LNLdatatimestamp=intel.xdk.services.iodocs_.bindCommon.bind(null,"intel.xdk.services.LNLdatatimestamp",intel.xdk.services.iodocs_.LNL.datatimestamp,{txtEmail:"",txtPassword:"",p1:"4",__proto__:{}});
+/*xdk-auto-gen:service-methods:LNLdatatimestamp:end*/
